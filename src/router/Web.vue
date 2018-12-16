@@ -4,10 +4,10 @@
 </template>
 
 <script>
-  import Content from '@/components/Content';
+  import PageWeb from '@/components/Page/PageWeb';
 
   export default {
-    components: { 'x-content': Content },
+    components: { 'x-content': PageWeb },
   };
 </script>
 

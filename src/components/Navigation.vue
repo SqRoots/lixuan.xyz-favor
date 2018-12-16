@@ -1,17 +1,18 @@
 <template>
   <div>
-    <!-- 折叠边栏 -->
+    <!-- 折叠 主导航 -->
     <!--
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
     -->
-  <!-- 导航 - 头部 -->
-  <navigation-head/>
+    
+    <!-- 导航 - 头部 -->
+    <navigation-head/>
 
-  <!-- 导航 - 体部 -->
-  <navigation-body/>
-</div>
+    <!-- 导航 - 体部 -->
+    <navigation-body/>
+  </div>
 </template>
 
 <script>

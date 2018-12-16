@@ -10,7 +10,6 @@
       <x-navigation/>
     </v-navigation-drawer>
 
-
     <!-- ■■■■■■■■ 主体内容 ■■■■■■■■ -->
     <v-content>
       <v-container fluid>
@@ -24,6 +23,17 @@
 
     <!-- ■■■■■■■■ 右边导航 ■■■■■■■■ -->
     <!-- <x-navigation-right/> -->
+
+    <!-- ■■■■■■■■ 克上角折叠按钮 ■■■■■■■■ -->
+    <v-btn
+      small
+      fixed
+      top
+      left
+      fab
+    >
+      <v-icon>menu</v-icon>
+    </v-btn>
   </v-app>
 </template>
 
@@ -43,6 +53,12 @@ export default {
 </script>
 
 <style media="screen">
+  .v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.v-navigation-drawer--open.theme--light {
+    background: #ceccc4;
+  }
+  .v-content__wrap {
+    background: #dedcd4;
+  }
   /* 导航 颜色 */
   /* .v-navigation-drawer,
   .v-navigation-drawer a,

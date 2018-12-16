@@ -1,4 +1,4 @@
-const DataNavigationBody = [
+const NavigationBodyData = [
   {
     text: '首页',
     routerName: 'Home',
@@ -11,9 +11,9 @@ const DataNavigationBody = [
     model: false,
     icon: 'public',
     children: [
-      { icon: 'language', text: '综合' },
-      { icon: 'functions', text: '理科' },
-      { icon: 'account_circle', text: '博客' },
+      { icon: 'language', text: '综合', query: { category: '综合' } },
+      { icon: 'functions', text: '理科', query: { category: '理科' } },
+      { icon: 'account_circle', text: '博客', query: { category: '博客' } },
     ],
   },
   {
@@ -22,9 +22,9 @@ const DataNavigationBody = [
     model: false,
     icon: 'archive',
     children: [
-      { icon: 'insert_drive_file', text: '论文' },
-      { icon: 'place', text: '地理' },
-      { icon: 'attach_money', text: '财经' },
+      { icon: 'insert_drive_file', text: '论文', query: { category: '论文' } },
+      { icon: 'place', text: '地理', query: { category: '地理' } },
+      { icon: 'attach_money', text: '财经', query: { category: '财经' } },
     ],
   },
   {
@@ -54,4 +54,4 @@ const DataNavigationBody = [
   },
 ];
 
-export default DataNavigationBody;
+export default NavigationBodyData;

@@ -21,6 +21,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.v-avatar.v-icon, .v-avatar.v-image, .v-avatar img {
+  border: 5px solid #eee;
+  box-shadow: 1px 1px 15px rgba(0,0,0,0.1);
+}
+h1 {
+  color: #393939;
+}
 * {
   text-transform: none !important;
 }
