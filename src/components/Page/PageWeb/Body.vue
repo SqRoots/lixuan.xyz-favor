@@ -1,33 +1,44 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row align-center xs12/>
+      <!-- 生成子分类 开始 -->
       <v-flex v-for="data in filterSection(sectionData)" xs12>
+        <!-- 子分类 标题 -->
         <v-toolbar light flat>
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{data}}</h2></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon>
-            <v-icon>search</v-icon>
+            <v-icon>create</v-icon>
           </v-btn>
           <v-btn icon>
-            <v-icon>apps</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>refresh</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>more_vert</v-icon>
+            <v-icon>add</v-icon>
           </v-btn>
           {{$route.query.category}}
         </v-toolbar>
-        <x-body-section :login="!!login" :bodyData="getSectionData(bodyData, data)"/>
+
+        <!-- 子分类 内容 -->
+        <x-body-section
+          @deleteItem="showDeleteDialog"
+          :login="!!login"
+          :bodyData="getSectionData(bodyData, data)"
+        />
       </v-flex>
     </v-layout>
+    <!-- 生成子分类 结束 -->
+
+    <!-- 删除对话框 -->
+    <x-dialog-delete-item
+      @turnoff="deleteDialog=false"
+      :value="deleteDialog"
+      :data="deleteDialogData"
+    />
   </v-container>
 </template>
 
 <script>
 import BodySection from './BodySection';
+import DeleteItem from '@/components/PublicComponents/DeleteItem';
 
 const axios = require('axios');
 
@@ -35,17 +46,24 @@ export default {
   name: 'Body',
   components: {
     'x-body-section': BodySection,
+    'x-dialog-delete-item': DeleteItem,
   },
   data() {
     return {
       routerName: this.$route.name,
       routerQuery: this.$route.query,
-      bodyData: [],       // 全部数据
-      sectionData: [],    // 目录数据
-      login: false,       // 是否登录
+      bodyData: [],         // 全部数据
+      sectionData: [],      // 目录数据
+      login: false,         // 是否登录
+      deleteDialog: false,  // 删除对话框-显示隐藏
+      deleteDialogData: {}  // 删除对话框-数据
     };
   },
   methods: {
+    showDeleteDialog(data) {
+      this.deleteDialogData=data;
+      this.deleteDialog=true;
+    },
     toChinese(routerName) {
       if (routerName.toLowerCase() === 'web') {
         return '网站';
@@ -99,10 +117,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  /* .flex{
-    background: #ededed;
-    border: 1px solid #e1e1e1;
-  } */
   .v-toolbar{
     background: none;
     border-bottom: 1px solid #333;
@@ -113,6 +127,6 @@ export default {
   }
   .flex {
     margin-top: 20px;
-    margin-bottom: 200px;
+    margin-bottom: 128px;
   }
 </style>
