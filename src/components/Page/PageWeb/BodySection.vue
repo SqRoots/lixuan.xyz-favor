@@ -9,9 +9,9 @@
           </v-toolbar-title>
           <v-spacer></v-spacer>
 
-          <v-btn icon small v-if='login'><v-icon>visibility</v-icon></v-btn>
-          <v-btn icon small v-if='login'><v-icon>create</v-icon></v-btn>
-          <v-btn icon small v-if='login'><v-icon>delete_outline</v-icon></v-btn>
+          <v-btn icon small v-if='login'><v-icon color="#550">visibility</v-icon></v-btn>
+          <v-btn icon small v-if='login'><v-icon color="#550">create</v-icon></v-btn>
+          <v-btn icon small v-if='login'><v-icon color="#550">delete_outline</v-icon></v-btn>
 
         </v-toolbar>
 

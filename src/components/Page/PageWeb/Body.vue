@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row align-center xs12/>
-      <v-flex v-for="data in sectionData" xs12>
+      <v-flex v-for="data in filterSection(sectionData)" xs12>
         <v-toolbar light flat>
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{data}}</h2></v-toolbar-title>
@@ -18,6 +18,7 @@
           <v-btn icon>
             <v-icon>more_vert</v-icon>
           </v-btn>
+          {{$route.query.category}}
         </v-toolbar>
         <x-body-section :login="!!login" :bodyData="getSectionData(bodyData, data)"/>
       </v-flex>
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       routerName: this.$route.name,
+      routerQuery: this.$route.query,
       bodyData: [],       // 全部数据
       sectionData: [],    // 目录数据
       login: false,       // 是否登录
@@ -71,7 +73,7 @@ export default {
         xThis.sectionData = Array.from(li);
       });
     },
-    getSectionData(data, filterWord) {
+    getSectionData(data, filterWord) { //返回不同子类别的名称
       const li = [];
       data.forEach((v) => {
         if (v.category === filterWord) {
@@ -80,6 +82,13 @@ export default {
       });
       return li;
     },
+    filterSection(data) {
+      if (!this.$route.query.category) {
+        return data;
+      } else {
+        return [this.$route.query.category];
+      }
+    }
   },
   mounted() {
     this.getBodyData(this, this.$route.name);

@@ -3,7 +3,7 @@
     <!-- ■■■■■■■■ 左边导航 ■■■■■■■■ -->
     <v-navigation-drawer
       :clipped="$vuetify.breakpoint.lgAndUp"
-      value="true"
+      v-model="miniVariant"
       fixed
       app
     >
@@ -31,8 +31,9 @@
       top
       left
       fab
+      @click.stop="miniVariant = !miniVariant"
     >
-      <v-icon>menu</v-icon>
+      <v-icon v-html="miniVariant ? 'chevron_left' : 'menu'"></v-icon>
     </v-btn>
   </v-app>
 </template>
@@ -45,7 +46,7 @@ export default {
   components: { 'x-navigation': Navigation },
   data() {
     return {
-
+      miniVariant: true,
     };
   },
   name: 'App',

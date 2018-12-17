@@ -6,7 +6,7 @@
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
     -->
-    
+
     <!-- 导航 - 头部 -->
     <navigation-head/>
 
@@ -27,12 +27,11 @@ export default {
   },
   data() {
     return {
-      clipped: true,
-      drawer: true,
-      fixed: true,
-      miniVariant: false,
-      right: false,
-      rightDrawer: false,
+      // clipped: true,
+      // drawer: true,
+      // fixed: true,
+      // right: false,
+      // rightDrawer: false,
     };
   },
 };
