@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <v-layout align-center column/>
-      <v-flex xs12>
-        <h1>{{toChinese(routerName)}}</h1>
+      <v-flex>
+        <h1>{{$_toChinese(routerName)}}</h1>
+        <h3>我喜欢的{{$_toChinese(routerName)}}</h3>
       </v-flex>
     </v-layout>
   </v-container>
@@ -12,7 +13,7 @@
 export default {
   name: 'Header',
   methods: {
-    toChinese(routerName) {
+    $_toChinese(routerName) {
       if (routerName.toLowerCase() === 'web') {
         return '网站';
       } else if (routerName.toLowerCase() === 'data') {
@@ -33,7 +34,6 @@ export default {
       routerName: this.$route.name,
     };
   },
-  props: ['x_title'],
 };
 </script>
 
@@ -42,5 +42,9 @@ export default {
   h1 {
     text-align: center;
     font-size: 36px;
+  }
+  h3 {
+    text-align: center;
+    color: #666;
   }
 </style>

@@ -46,7 +46,7 @@
 const axios = require('axios');
 
 export default {
-  name: 'DeleteItem',
+  name: 'DialogDeleteItem',
   data() {
     return {
       vDeleteDialog: false,

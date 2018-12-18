@@ -2,16 +2,16 @@
   <v-container fluid grid-list-md>
     <v-layout row align-center xs12/>
       <!-- 生成子分类 开始 -->
-      <v-flex v-for="data in filterSection(sectionData)" xs12>
+      <v-flex v-for="data in $_filterSection(sectionData)" :key="data" xs12>
         <!-- 子分类 标题 -->
         <v-toolbar light flat>
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{data}}</h2></v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon @click="$_EditItem(data)">
             <v-icon>create</v-icon>
           </v-btn>
-          <v-btn icon>
+          <v-btn icon @click="$_CreateItem(data)">
             <v-icon>add</v-icon>
           </v-btn>
           {{$route.query.category}}
@@ -19,9 +19,11 @@
 
         <!-- 子分类 内容 -->
         <x-body-section
-          @deleteItem="showDeleteDialog"
+          @eHideItem=""
+          @eEditItem=""
+          @eDeleteItem="$_ShowDeleteDialog"
           :login="!!login"
-          :bodyData="getSectionData(bodyData, data)"
+          :bodyData="$_getSectionData(bodyData, data)"
         />
       </v-flex>
     </v-layout>
@@ -29,16 +31,23 @@
 
     <!-- 删除对话框 -->
     <x-dialog-delete-item
-      @turnoff="deleteDialog=false"
-      :value="deleteDialog"
-      :data="deleteDialogData"
+      @eHideDialog="valueShowDeleteItemDialog=false"
+      :qShow="valueShowDeleteItemDialog"
+      :data="dataDeleteDialog"
+    />
+    <!-- 新建对话框 -->
+    <x-dialog-create-item
+      @eHideDialog="valueCreateItemDialog=false"
+      :qShow="valueCreateItemDialog"
+      :data="dataCreateDialog"
     />
   </v-container>
 </template>
 
 <script>
+import DialogDeleteItem from '@/components/PublicComponents/DialogDeleteItem';
+import DialogCreateItem from '@/components/PublicComponents/DialogCreateItem';
 import BodySection from './BodySection';
-import DeleteItem from '@/components/PublicComponents/DeleteItem';
 
 const axios = require('axios');
 
@@ -46,7 +55,8 @@ export default {
   name: 'Body',
   components: {
     'x-body-section': BodySection,
-    'x-dialog-delete-item': DeleteItem,
+    'x-dialog-delete-item': DialogDeleteItem,
+    'x-dialog-create-item': DialogCreateItem,
   },
   data() {
     return {
@@ -55,43 +65,39 @@ export default {
       bodyData: [],         // 全部数据
       sectionData: [],      // 目录数据
       login: false,         // 是否登录
-      deleteDialog: false,  // 删除对话框-显示隐藏
-      deleteDialogData: {}  // 删除对话框-数据
+      valueShowDeleteItemDialog: false,  // 删除对话框-显示隐藏
+      dataDeleteDialog: {},              // 删除对话框-数据
+      valueCreateItemDialog: false,      // 新建对话框-显示隐藏
+      dataCreateDialog: {},              // 新建对话框-数据
+      queryResult: '',                   // 查询结果
     };
   },
   methods: {
-    showDeleteDialog(data) {
-      this.deleteDialogData=data;
-      this.deleteDialog=true;
+    $_EditItem(data) {
+      return data;
     },
-    toChinese(routerName) {
-      if (routerName.toLowerCase() === 'web') {
-        return '网站';
-      } else if (routerName.toLowerCase() === 'data') {
-        return '数据';
-      } else if (routerName.toLowerCase() === 'software') {
-        return '软件';
-      } else if (routerName.toLowerCase() === 'motto') {
-        return '格言';
-      } else if (routerName.toLowerCase() === 'about') {
-        return '关于';
-      }
-      return '首页';
+    $_CreateItem(data) {
+      this.valueCreateItemDialog = true;
+      this.dataCreateDialog = { category: data };
     },
-    getBodyData(xThis, routerName) {  // 获取数据
-      const url = 'https://lixuan.xyz/blog/x-c/get.php?catalog=' + routerName;
+    $_ShowDeleteDialog(data) {
+      this.dataDeleteDialog = data;
+      this.valueShowDeleteItemDialog = true;
+    },
+    $_getBodyData(routerName) {    // 从服务器获取数据
+      const url = 'https://lixuan.xyz/blog/x-c/get.php';
       axios
-      .get(url)
+      .get(url, { params: { catalog: routerName } })
       .then((response) => {
-        console.log(response.data.login);
-        xThis.login = response.data.login;
-        xThis.bodyData = response.data.data;
+        this.login = response.data.login;
+        this.bodyData = response.data.data;
         const li = new Set();
         response.data.data.forEach(x => li.add(x.category));
-        xThis.sectionData = Array.from(li);
+        this.sectionData = Array.from(li);
       });
     },
-    getSectionData(data, filterWord) { //返回不同子类别的名称
+    $_getSectionData(data, filterWord) {
+      // 返回不同子类别的名称
       const li = [];
       data.forEach((v) => {
         if (v.category === filterWord) {
@@ -100,16 +106,15 @@ export default {
       });
       return li;
     },
-    filterSection(data) {
+    $_filterSection(data) {
       if (!this.$route.query.category) {
         return data;
-      } else {
-        return [this.$route.query.category];
       }
-    }
+      return [this.$route.query.category];
+    },
   },
   mounted() {
-    this.getBodyData(this, this.$route.name);
+    this.$_getBodyData(this.$route.name);
   },
   props: ['x_title'],
 };

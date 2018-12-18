@@ -1,0 +1,59 @@
+<template>
+  <v-dialog width="500" v-model="valueShowDialog">
+    <v-card>
+    <v-card-title
+      class="headline grey lighten-2"
+      primary-title
+    >
+      {{data[0]}}
+    </v-card-title>
+
+    <v-card-text>
+      {{data[1]}}
+    </v-card-text>
+
+    <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn
+      color="primary"
+      flat
+      @click="valueShowDialog=false"
+      >
+      确认
+      </v-btn>
+    </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+export default {
+  name: 'DialogResult',
+  data() {
+    return {
+      valueShowDialog: false,
+    };
+  },
+  props: {
+    data: Array,
+    qShow: Boolean,
+  },
+  watch: {
+    qShow(val) {
+      this.valueShowDialog = val;
+    },
+    valueShowDialog(val) {
+      if (val === false) {
+        this.$emit('eTurnOff');
+      }
+    },
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

@@ -19,11 +19,6 @@ export default {
   },
   data() {
     return {
-      cards: [1, 2, 3],
-      items: ['abc', 'sdfdsf', 'asdf'],
-      clipped: true,
-      drawer: true,
-      miniVariant: false,
     };
   },
 };

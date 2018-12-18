@@ -60,18 +60,6 @@ export default {
   .v-content__wrap {
     background: #dedcd4;
   }
-  /* 导航 颜色 */
-  /* .v-navigation-drawer,
-  .v-navigation-drawer a,
-  .v-navigation-drawer .v-list__tile__title,
-  .v-navigation-drawer .primary--text,
-  .v-navigation-drawer .v-list__group.v-list__group--active  .v-list__tile__title{
-    color: #333;
-  }
-  .v-navigation-drawer .v-icon,
-  .v-navigation-drawer .v-list__tile__action i {
-    color: #a30;
-  } */
   /* 导航对齐 */
   a.v-list__tile.v-list__tile--link.theme--light,
   a.primary--text.v-list__tile--active.v-list__tile.v-list__tile--link.theme--light{

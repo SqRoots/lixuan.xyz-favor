@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-md text-xs-center>
-    <v-layout row wrap justify-space-between d-inline-flex>
+    <v-layout row wrap justify-start d-inline-flex>
       <v-flex v-for="data in bodyData" :key="data.id" xs12 sm6 md4 lg3 xg2>
         <v-toolbar height="30px" light color="rgba(50,70,0,0.5)">
           <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
@@ -9,9 +9,9 @@
           </v-toolbar-title>
           <v-spacer></v-spacer>
 
-          <v-btn icon small @click="$emit('hideItem',data)" v-if='login||true'><v-icon color="#550">visibility</v-icon></v-btn>
-          <v-btn icon small @click="$emit('editItem',data)" v-if='login||true'><v-icon color="#550">create</v-icon></v-btn>
-          <v-btn icon small @click="$emit('deleteItem',data)" v-if='login||true'><v-icon color="#550">delete_outline</v-icon></v-btn>
+          <v-btn icon small @click="$emit('eHideItem',data)" v-if='login||true'><v-icon color="#550">visibility</v-icon></v-btn>
+          <v-btn icon small @click="$emit('eEditItem',data)" v-if='login||true'><v-icon color="#550">create</v-icon></v-btn>
+          <v-btn icon small @click="$emit('eDeleteItem',data)" v-if='login||true'><v-icon color="#550">delete_outline</v-icon></v-btn>
 
         </v-toolbar>
 
