@@ -1,10 +1,9 @@
 <template>
   <v-container grid-list-md text-xs-center>
-    <v-layout row wrap justify-start d-inline-flex>
+    <v-layout row wrap justify-start >
       <v-flex v-for="data in bodyData" :key="data.id" xs12 sm6 md4 lg3 xg2>
         <v-toolbar height="30px" light color="rgba(50,70,0,0.5)">
-          <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-          <v-toolbar-title style="font-size:16px;margin-left:-13px;">
+          <v-toolbar-title style="font-size:16px;">
             <a :href="data.url" target="_blank"><v-icon>open_in_new</v-icon> {{data.name}}</a>
           </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -73,6 +72,6 @@ export default {
   .v-toolbar .v-btn {
     margin-left: -5px;
     padding: 0;
-    /* width: 16px; */
   }
+
 </style>

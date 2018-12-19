@@ -1,29 +1,18 @@
 <template>
   <v-dialog width="500" v-model="valueShowDialog">
     <v-card>
-    <v-card-title
-      class="headline grey lighten-2"
-      primary-title
-    >
-      {{data[0]}}
-    </v-card-title>
+      <v-card-title class="headline blue darken-4">
+        <span class="headline white--text">{{data[0]}}</span>
+      </v-card-title>
 
-    <v-card-text>
-      {{data[1]}}
-    </v-card-text>
+      <v-card-text v-html="data[1]"></v-card-text>
 
-    <v-divider></v-divider>
+      <v-divider></v-divider>
 
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn
-      color="primary"
-      flat
-      @click="valueShowDialog=false"
-      >
-      确认
-      </v-btn>
-    </v-card-actions>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue darken-1 white--text" @click="valueShowDialog=false">确认</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -55,5 +44,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

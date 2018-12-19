@@ -14,7 +14,6 @@
           <v-btn icon @click="$_CreateItem(data)">
             <v-icon>add</v-icon>
           </v-btn>
-          {{$route.query.category}}
         </v-toolbar>
 
         <!-- 子分类 内容 -->
@@ -134,4 +133,5 @@ export default {
     margin-top: 20px;
     margin-bottom: 128px;
   }
+
 </style>

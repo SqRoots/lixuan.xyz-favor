@@ -1,64 +1,74 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="valueShowDialog" persistent max-width="600px">
-      <v-card>
-        <v-card-title class="headline blue darken-4">
-          <span class="headline white--text">新建</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs6>
-                <v-text-field label="原名" required></v-text-field>
-              </v-flex>
-              <v-flex xs6>
-                <v-text-field label="译名" required></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="网站地址" required></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field label="Slogan" required></v-text-field>
-              </v-flex>
-              <v-divider></v-divider>
-              <v-flex xs12 sm6 md4 lg3>
-                <v-text-field label="创办人" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4 lg3>
-                <v-text-field label="分类" required :value="data.category"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4 lg3>
-                <v-text-field label="类型" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4 lg3>
-                <v-text-field label="排序" required></v-text-field>
-              </v-flex>
-              <v-divider></v-divider>
-              <v-flex xs12 sm6 md4 lg3>
-                <v-switch
-                  :label="`可见: ${switch1.toString()}`"
-                  v-model="switch1"
-                ></v-switch>
-              </v-flex>
-              <v-flex xs12>
-                <v-textarea
-                  outline
-                  name="input-7-4"
-                  label="描述"
-                  value=""
-                ></v-textarea>
-              </v-flex>
-            </v-layout>
-          </v-container>
-          <small>*也许该写点什么提示吧</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="grey lighten-1 white--text" @click="valueShowDialog = false">取消</v-btn>
-          <v-btn color="blue darken-1 white--text" @click="valueShowDialog = false">保存</v-btn>
-        </v-card-actions>
-      </v-card>
+      <v-form>
+        <v-card>
+          <v-card-title class="headline blue darken-4">
+            <span class="headline white--text">新建</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs6>
+                  <v-text-field v-model="formName" label="原名" required></v-text-field>
+                </v-flex>
+                <v-flex xs6>
+                  <v-text-field v-model="formNameCN" label="译名" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field v-model="formURL" label="网站地址" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field v-model="formSlogan" label="Slogan" required></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-text-field v-model="formEstablisher" label="创办人" required></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-text-field v-model="formCategory" label="分类" required :value="data.category"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-text-field v-model="formType" label="类型" required></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-text-field v-model="formOrder" label="排序" required></v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-switch
+                    :label="formVisible ? '可见' : '隐藏'"
+                    v-model="formVisible"
+                  ></v-switch>
+                </v-flex>
+                <v-flex xs12>
+                  <v-textarea
+                    outline
+                    v-model="formDescriptionHTML"
+                    label="描述"
+                  ></v-textarea>
+                </v-flex>
+              </v-layout>
+            </v-container>
+
+            <small>*也许该写点什么提示吧</small>
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="grey lighten-1 white--text" @click="valueShowDialog = false">取消</v-btn>
+            <v-btn color="blue darken-1 white--text" @click="$_submit()">保存</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-form>
     </v-dialog>
+    <x-dialog-result
+      @eTurnOff="valueShowResultDialog=false"
+      :qShow="valueShowResultDialog"
+      :data="['新建结果', queryResult]"
+    />
   </v-layout>
 </template>
 
@@ -77,7 +87,16 @@ export default {
       valueShowDialog: false,
       valueShowResultDialog: false,
       queryResult: '',
-      switch1: true,
+      formVisible: true,
+      formName: 'test',
+      formNameCN: '中国',
+      formURL: '',
+      formSlogan: '哈哈',
+      formEstablisher: '',
+      formCategory: '',
+      formType: '',
+      formOrder: '',
+      formDescriptionHTML: '',
     };
   },
   methods: {
@@ -86,6 +105,26 @@ export default {
       axios
       .get(url, { params: { id: itemID } })
       .then((response) => {
+        this.queryResult = response.data;
+      });
+      this.valueShowDialog = false;
+      this.valueShowResultDialog = true;
+    },
+    $_submit() {
+      const url = 'https://lixuan.xyz/blog/x-c/website-create.php';
+      const params = new URLSearchParams();
+      params.append('name', this.formName);
+      params.append('name_cn', this.formNameCN);
+      params.append('url', this.formURL);
+      params.append('slogan', this.formSlogan);
+      params.append('establisher', this.formEstablisher);
+      params.append('category', this.formCategory);
+      params.append('type', this.formType);
+      params.append('order', this.order);
+      params.append('visible', this.formVisible);
+      params.append('description_html', this.formDescriptionHTML);
+      axios
+      .post(url, params).then((response) => {
         this.queryResult = response.data;
       });
       this.valueShowDialog = false;

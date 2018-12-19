@@ -22,8 +22,8 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="secondery" flat @click="valueShowDialog = false">取消</v-btn>
-        <v-btn color="primary" flat @click="$_toDeleteItem(data.id);valueShowResultDialog=true">确认</v-btn>
+        <v-btn color="grey lighten-1 white--text" @click="valueShowDialog = false">取消</v-btn>
+        <v-btn color="blue darken-1 white--text" @click="$_toDeleteItem(data.id);valueShowResultDialog=true">确认</v-btn>
       </v-card-actions>
       </v-card>
     </v-dialog>

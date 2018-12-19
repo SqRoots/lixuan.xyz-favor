@@ -21,9 +21,6 @@
       </v-container>
     </v-content>
 
-    <!-- ■■■■■■■■ 右边导航 ■■■■■■■■ -->
-    <!-- <x-navigation-right/> -->
-
     <!-- ■■■■■■■■ 克上角折叠按钮 ■■■■■■■■ -->
     <v-btn
       small
@@ -80,4 +77,9 @@ export default {
     margin: 0;
   }
   /* 导航对齐 - 结束 */
+
+  /*  toolbar */
+  .v-toolbar__content, .v-toolbar__extension{
+    padding: 0 12px;
+  }
 </style>
