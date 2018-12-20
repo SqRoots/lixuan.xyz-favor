@@ -120,7 +120,7 @@ export default {
       params.append('establisher', this.formEstablisher);
       params.append('category', this.formCategory);
       params.append('type', this.formType);
-      params.append('order', this.order);
+      params.append('order', this.formOrder);
       params.append('visible', this.formVisible);
       params.append('description_html', this.formDescriptionHTML);
       axios
