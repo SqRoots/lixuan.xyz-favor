@@ -11,4 +11,4 @@ $data = array();
 while ($row = $result->fetchArray()) {
     array_push($data,$row);
 }
-echo json_encode($data, JSON_UNESCAPED_UNICODE);
+echo json_encode(array('data'=>$data), JSON_UNESCAPED_UNICODE);
