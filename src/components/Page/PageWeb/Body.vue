@@ -8,18 +8,16 @@
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{data}}</h2></v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon @click="$_EditItem(data)">
+          <v-btn icon v-if="login" @click="$_EditItem(data)">
             <v-icon>create</v-icon>
           </v-btn>
-          <v-btn icon @click="$_CreateItem(data)">
+          <v-btn icon v-if="login" @click="$_CreateItem(data)">
             <v-icon>add</v-icon>
           </v-btn>
         </v-toolbar>
 
         <!-- 子分类 内容 -->
         <x-body-section
-          @eHideItem=""
-          @eEditItem=""
           @eDeleteItem="$_ShowDeleteDialog"
           :login="!!login"
           :bodyData="$_getSectionData(bodyData, data)"
@@ -28,13 +26,13 @@
     </v-layout>
     <!-- 生成子分类 结束 -->
 
-    <!-- 删除对话框 -->
+    <!-- 删除 对话框 -->
     <x-dialog-delete-item
       @eHideDialog="valueShowDeleteItemDialog=false"
       :qShow="valueShowDeleteItemDialog"
       :data="dataDeleteDialog"
     />
-    <!-- 新建对话框 -->
+    <!-- 新建 对话框 -->
     <x-dialog-create-item
       @eHideDialog="valueCreateItemDialog=false"
       :qShow="valueCreateItemDialog"
@@ -72,9 +70,6 @@ export default {
     };
   },
   methods: {
-    $_EditItem(data) {
-      return data;
-    },
     $_CreateItem(data) {
       this.valueCreateItemDialog = true;
       this.dataCreateDialog = { category: data };
@@ -84,7 +79,7 @@ export default {
       this.valueShowDeleteItemDialog = true;
     },
     $_getBodyData(routerName) {    // 从服务器获取数据
-      const url = 'https://lixuan.xyz/blog/x-c/get.php';
+      const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
       axios
       .get(url, { params: { catalog: routerName } })
       .then((response) => {
@@ -115,7 +110,6 @@ export default {
   mounted() {
     this.$_getBodyData(this.$route.name);
   },
-  props: ['x_title'],
 };
 </script>
 

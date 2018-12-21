@@ -1,13 +1,13 @@
 
 <template>
-  <x-content :url="$router.name"/>
+  <x-page-web :url="$router.name"/>
 </template>
 
 <script>
   import PageWeb from '@/components/Page/PageWeb';
 
   export default {
-    components: { 'x-content': PageWeb },
+    components: { 'x-page-web': PageWeb },
   };
 </script>
 

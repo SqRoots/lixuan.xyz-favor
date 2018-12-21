@@ -13,13 +13,39 @@
     <!-- ■■■■■■■■ 主体内容 ■■■■■■■■ -->
     <v-content>
       <v-container fluid>
-        <v-layout justify-center align-center>
-          <v-flex xs12>
-            <router-view/>
-          </v-flex>
-        </v-layout>
+        <router-view/>
       </v-container>
     </v-content>
+
+    <v-footer
+      app
+      v-if="$route.name==='Home'"
+      dark
+      height="auto"
+      :inset="true"
+    >
+      <v-card class="flex" flat tile>
+        <v-card-title class="teal">
+          <strong class="subheading">Get connected with us on social networks!</strong>
+
+          <v-spacer></v-spacer>
+
+          <v-btn
+            v-for="icon in 5"
+            :key="icon"
+            class="mx-3"
+            dark
+            icon
+          >
+            <v-icon size="24px">{{ icon }}</v-icon>
+          </v-btn>
+        </v-card-title>
+
+        <v-card-actions class="grey darken-3 justify-center">
+          &copy;2018 — &nbsp; <strong>lixuan.xyz</strong>
+        </v-card-actions>
+      </v-card>
+    </v-footer>
 
     <!-- ■■■■■■■■ 克上角折叠按钮 ■■■■■■■■ -->
     <v-btn
@@ -45,6 +71,8 @@ export default {
     return {
       miniVariant: true,
     };
+  },
+  methods: {
   },
   name: 'App',
 };

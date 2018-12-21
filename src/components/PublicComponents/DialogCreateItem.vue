@@ -100,18 +100,8 @@ export default {
     };
   },
   methods: {
-    toDeleteItem(itemID) {
-      const url = 'https://lixuan.xyz/blog/x-c/website-create.php';
-      axios
-      .get(url, { params: { id: itemID } })
-      .then((response) => {
-        this.queryResult = response.data;
-      });
-      this.valueShowDialog = false;
-      this.valueShowResultDialog = true;
-    },
     $_submit() {
-      const url = 'https://lixuan.xyz/blog/x-c/website-create.php';
+      const url = 'https://lixuan.xyz/blog/x-c/web-create.php';
       const params = new URLSearchParams();
       params.append('name', this.formName);
       params.append('name_cn', this.formNameCN);

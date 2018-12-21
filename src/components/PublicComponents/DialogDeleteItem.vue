@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     $_toDeleteItem(itemID) {
-      const url = 'https://lixuan.xyz/blog/x-c/website-delete.php';
+      const url = 'https://lixuan.xyz/blog/x-c/web-delete.php';
       axios
       .get(url, { params: { id: itemID } })
       .then((response) => {
