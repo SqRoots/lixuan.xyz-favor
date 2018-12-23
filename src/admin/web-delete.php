@@ -6,13 +6,13 @@ header('Access-Control-Allow-Method:POST,GET');    //允许访问的方式
 require_once '/www/wwwroot/lixuan.xyz/blog/wp-load.php';
 if (  is_user_logged_in() ) {
     $db = new SQLite3('collection.sqlite3');
-    $statement = $db->prepare('delete from website where id = :id;');
-    $statement->bindValue(':id', $_GET["id"]);
-    $result = $statement->execute();
-    var_dump($result);
-    $db->close();
-    echo '已删除';
+	$statement = $db->prepare('delete FROM web WHERE id = :id;');
+	$statement->bindValue(':id', $_GET["id"]);
+	$result = $statement->execute();
+	var_dump($result);
+	$db->close();
+	echo 'id='.$_GET['id'].'的项目已删除！';
 } else {
-    echo '未登录<br>';
-    echo $_GET['id'];
+  echo '【未登录】<br>';
+  echo '仅管理员和作者有此权限！';
 }

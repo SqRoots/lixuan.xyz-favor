@@ -10,7 +10,7 @@ if ( is_user_logged_in() ) {
 
   $db = new SQLite3('collection.sqlite3');
   $stmt = $db->prepare('
-    insert into website
+    insert into web
     (user_id,name,name_cn,url,slogan,establisher,category,type,"order",visible,description_html)
     values
     (:user_id,:name,:name_cn,:url,:slogan,:establisher,:category,:type,:order,:visible,:description_html)
@@ -33,8 +33,6 @@ if ( is_user_logged_in() ) {
   $db->close();
   echo '已添加';
 } else {
-  echo '【未登录】<br><br>';
-  foreach ($_POST as $k => $v){
-    echo "【".$k."】\t".$v.'<br>';
-  }
+  echo '【未登录】<br>';
+  echo '仅管理员和作者有此权限！';
 }

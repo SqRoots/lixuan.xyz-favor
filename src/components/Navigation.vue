@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <!-- 折叠 主导航 -->
-    <!--
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-    -->
+  <v-container>
+    <v-layout>
+      <v-flex>
+        <!-- 导航 - 头部 -->
+        <navigation-head/>
 
-    <!-- 导航 - 头部 -->
-    <navigation-head/>
-
-    <!-- 导航 - 体部 -->
-    <navigation-body/>
-  </div>
+        <v-divider></v-divider>
+        
+        <!-- 导航 - 体部 -->
+        <navigation-body/>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

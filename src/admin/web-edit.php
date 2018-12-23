@@ -10,7 +10,7 @@ if ( is_user_logged_in() ) {
 
   $db = new SQLite3('collection.sqlite3');
   $stmt = $db->prepare('
-    update website
+    update web
     set
     name=:name,
     name_cn=:name_cn,
@@ -47,5 +47,6 @@ if ( is_user_logged_in() ) {
    }
   $db->close();
 } else {
-  echo '【未登录】<br><br>';
+  echo '【未登录】<br>';
+  echo '仅管理员和作者有此权限！';
 }

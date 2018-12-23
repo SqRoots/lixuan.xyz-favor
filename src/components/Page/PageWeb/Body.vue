@@ -1,49 +1,42 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row align-center xs12/>
-      <!-- 生成子分类 开始 -->
-      <v-flex v-for="data in $_filterSection(sectionData)" :key="data" xs12>
-        <!-- 子分类 标题 -->
+      <!-- 生成分类 开始 -->
+      <v-flex v-for="category in $_filterSection(dataCategoryData)" :key="category" xs12>
+        <!-- 分类 标题 -->
         <v-toolbar light flat>
           <v-icon style="margin: 0;">ac_unit</v-icon>
-          <v-toolbar-title><h2>{{data}}</h2></v-toolbar-title>
+          <v-toolbar-title><h2>{{category}}</h2></v-toolbar-title>                                                   <!--  类别名称  -->
           <v-spacer></v-spacer>
-          <v-btn icon v-if="login" @click="$_EditItem(data)">
-            <v-icon>create</v-icon>
-          </v-btn>
-          <v-btn icon v-if="login" @click="$_CreateItem(data)">
-            <v-icon>add</v-icon>
-          </v-btn>
+          <v-btn icon v-if="login||true" @click="$_ShowEditCategoryDialog(category)"><v-icon>create</v-icon></v-btn> <!--  编辑按钮  -->
+          <v-btn icon v-if="login||true" @click="$_ShowCreateDialog(category)"><v-icon>add</v-icon></v-btn>          <!--  添加按钮  -->
         </v-toolbar>
 
-        <!-- 子分类 内容 -->
-        <x-body-section
-          @eDeleteItem="$_ShowDeleteDialog"
-          :login="!!login"
-          :bodyData="$_getSectionData(bodyData, data)"
-        />
+        <!-- 分类 内容（项目） -->
+        <x-body-section :login="!!login" :bodyData="$_getSectionData(bodyData, category)"/>
       </v-flex>
     </v-layout>
-    <!-- 生成子分类 结束 -->
+    <!-- 生成分类 结束 -->
 
-    <!-- 删除 对话框 -->
-    <x-dialog-delete-item
-      @eHideDialog="valueShowDeleteItemDialog=false"
-      :qShow="valueShowDeleteItemDialog"
-      :data="dataDeleteDialog"
+    <!-- 编辑分类 对话框 -->
+    <x-dialog-edit-category
+      @eHideDialog="valueEditCategoryDialog=false"
+      @eSucceed="$_reflashCategory"
+      :qShow="valueEditCategoryDialog"
+      :dData="dataEditCategoryDialog"
     />
-    <!-- 新建 对话框 -->
+    <!-- 新建项目 对话框 -->
     <x-dialog-create-item
       @eHideDialog="valueCreateItemDialog=false"
       :qShow="valueCreateItemDialog"
-      :data="dataCreateDialog"
+      :dData="dataCreateDialog"
     />
   </v-container>
 </template>
 
 <script>
-import DialogDeleteItem from '@/components/PublicComponents/DialogDeleteItem';
 import DialogCreateItem from '@/components/PublicComponents/DialogCreateItem';
+import DialogEditCategory from '@/components/PublicComponents/DialogEditCategory';
 import BodySection from './BodySection';
 
 const axios = require('axios');
@@ -52,42 +45,59 @@ export default {
   name: 'Body',
   components: {
     'x-body-section': BodySection,
-    'x-dialog-delete-item': DialogDeleteItem,
     'x-dialog-create-item': DialogCreateItem,
+    'x-dialog-edit-category': DialogEditCategory,
   },
   data() {
     return {
       routerName: this.$route.name,
       routerQuery: this.$route.query,
       bodyData: [],         // 全部数据
-      sectionData: [],      // 目录数据
+      dataCategoryData: [],      // 目录数据
       login: false,         // 是否登录
-      valueShowDeleteItemDialog: false,  // 删除对话框-显示隐藏
-      dataDeleteDialog: {},              // 删除对话框-数据
       valueCreateItemDialog: false,      // 新建对话框-显示隐藏
       dataCreateDialog: {},              // 新建对话框-数据
+      valueEditCategoryDialog: false,    // 编辑类别对话框-显示隐藏
+      dataEditCategoryDialog: {},        // 编辑类别对话框-数据
       queryResult: '',                   // 查询结果
     };
   },
   methods: {
-    $_CreateItem(data) {
+    $_ShowCreateDialog(data) {
       this.valueCreateItemDialog = true;
       this.dataCreateDialog = { category: data };
     },
-    $_ShowDeleteDialog(data) {
-      this.dataDeleteDialog = data;
-      this.valueShowDeleteItemDialog = true;
+    $_ShowEditCategoryDialog(data) {
+      this.valueEditCategoryDialog = true;
+      this.dataEditCategoryDialog = { category: data };
     },
-    $_getBodyData(routerName) {    // 从服务器获取数据
+    $_reflashCategory(newData) {
+      const li = new Set();
+      const tempData = [];
+      this.bodyData.forEach((x) => {
+        if (x.category === newData.old_category) {
+          li.add(newData.new_category);
+          const temp = x;
+          temp.category = newData.new_category;
+          tempData.push(temp);
+        } else {
+          li.add(x.category);
+          tempData.push(x);
+        }
+      });
+      this.dataCategoryData = Array.from(li);
+      this.bodyData = tempData;
+    },
+    $_getBodyData(routerName) {                               // 从服务器获取数据
       const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
       axios
       .get(url, { params: { catalog: routerName } })
       .then((response) => {
-        this.login = response.data.login;
-        this.bodyData = response.data.data;
+        this.login = response.data.login;                    // 是否登录
+        this.bodyData = response.data.data;                  // 项目数据
         const li = new Set();
         response.data.data.forEach(x => li.add(x.category));
-        this.sectionData = Array.from(li);
+        this.dataCategoryData = Array.from(li);                   // 项目类别数据
       });
     },
     $_getSectionData(data, filterWord) {
@@ -100,14 +110,14 @@ export default {
       });
       return li;
     },
-    $_filterSection(data) {
+    $_filterSection(data) {                               // 根据URL中的参数过滤类别
       if (!this.$route.query.category) {
-        return data;
+        return data;                                      // 返回所有类别
       }
-      return [this.$route.query.category];
+      return [this.$route.query.category];                // 返回URL中的类别
     },
   },
-  mounted() {
+  mounted() {                                             // 自成视图后自加载数据
     this.$_getBodyData(this.$route.name);
   },
 };

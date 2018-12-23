@@ -8,10 +8,10 @@
 
         <v-container>
           <v-layout align-start justify-center column>
-            <v-flex xs6><h3><span class="grey--text">项目 ID : </span>{{data.id}}</h3></v-flex>
-            <v-flex xs6><h3><span class="grey--text">项目名称: </span>{{data.name}}</h3></v-flex>
+            <v-flex xs6><h3><span class="grey--text">项目 ID : </span>{{dData.id}}</h3></v-flex>
+            <v-flex xs6><h3><span class="grey--text">项目名称: </span>{{dData.name}}</h3></v-flex>
             <v-flex xs6><h3><span class="grey--text">项目描述: </span></h3></v-flex>
-            <v-flex xs6 style="margin-left:20px;" v-html="data.description_html">
+            <v-flex xs6 style="margin-left:20px;" v-html="dData.description_html">
             </v-flex>
           </v-layout>
         </v-container>
@@ -23,7 +23,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="grey lighten-1 white--text" @click="valueShowDialog = false">取消</v-btn>
-        <v-btn color="blue darken-1 white--text" @click="$_toDeleteItem(data.id);valueShowResultDialog=true">确认</v-btn>
+        <v-btn color="blue darken-1 white--text" @click="$_toDeleteItem(dData.id)">确认</v-btn>
       </v-card-actions>
       </v-card>
     </v-dialog>
@@ -60,14 +60,16 @@ export default {
       .get(url, { params: { id: itemID } })
       .then((response) => {
         this.queryResult = response.data;
+        if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', itemID);    // 如果成功，更新当前页面中的数据
       });
       this.valueShowDialog = false;
       this.valueShowResultDialog = true;
+      // this.$emit('eSucceed', this.data.id);  // 如果成功，更新当前页面中的数据
     },
   },
   props: {
     qShow: Boolean,
-    data: Object,
+    dData: Object,
   },
   watch: {
     qShow(val) {

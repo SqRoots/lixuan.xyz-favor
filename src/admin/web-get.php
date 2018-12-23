@@ -10,7 +10,7 @@ if (is_user_logged_in()) {
 }
 
 $db = new SQLite3('collection.sqlite3');
-$statement = $db->prepare('select * from website');
+$statement = $db->prepare('select * from web');
 $result = $statement->execute();
 
 $data = array();
