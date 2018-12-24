@@ -34,7 +34,10 @@ export default {
 </script>
 
 <style scoped>
-.v-avatar .v-image{
+.container {
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+.v-avatar .v-image {
   border: 5px solid #eee;
   box-shadow: 1px 1px 15px rgba(0,0,0,0.1);
 }

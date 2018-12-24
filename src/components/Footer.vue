@@ -6,7 +6,7 @@
     height="auto"
     :inset="true"
   >
-    <v-card class="flex" flat color="#dedcd4">
+    <v-card class="flex" flat color="#dedcd4" style="border-top: 1px solid rgba(0,0,0,0.1);">
       <!-- follow me -->
       <v-card-title class="justify-center">
         <v-tooltip

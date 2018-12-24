@@ -19,7 +19,7 @@
 
     <x-footer/>
 
-    <!-- ■■■■■■■■ 克上角折叠按钮 ■■■■■■■■ -->
+    <!-- ■■■■■■■■ 左上角折叠按钮 ■■■■■■■■ -->
     <v-btn
       small
       fixed
@@ -54,13 +54,11 @@ export default {
 </script>
 
 <style media="screen">
-  .v-footer{
-    background-color: #dedcd4;
-    text-align: center;
-  }
+  /* 导航背景颜色 */
   .v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.v-navigation-drawer--open.theme--light {
     background: #ceccc4;
   }
+  /* 主体背景颜色 */
   .v-content__wrap {
     background: #dedcd4;
   }
@@ -70,16 +68,13 @@ export default {
     margin: 0;
     padding: 0;
   }
-
   .v-icon.material-icons.theme--light {
     margin: 0 16px;
   }
-
   .v-list__group__header .v-list__tile.v-list__tile--link.theme--light{
     margin: 0;
     padding: 0;
   }
-
   .v-list__group__header  .v-icon.material-icons.theme--light {
     margin: 0;
   }
@@ -89,4 +84,10 @@ export default {
   .v-toolbar__content, .v-toolbar__extension{
     padding: 0 12px;
   }
+  /*  页脚 */
+  .v-footer{
+    background-color: #dedcd4;
+    text-align: center;
+  }
+
 </style>

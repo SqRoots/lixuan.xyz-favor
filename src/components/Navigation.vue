@@ -5,8 +5,8 @@
         <!-- 导航 - 头部 -->
         <navigation-head/>
 
-        <v-divider></v-divider>
-        
+        <!-- <v-divider v-if="$route.name!=='Home'"></v-divider> -->
+
         <!-- 导航 - 体部 -->
         <navigation-body/>
       </v-flex>

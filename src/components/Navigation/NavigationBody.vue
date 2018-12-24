@@ -58,14 +58,13 @@ export default {
   props: {
     source: String,
   },
-  // activated: function () {
-  //   this.items.forEach(function(v, i){
-  //     if (v.routerName.toLowerCase() === this.routerName.toLowerCase()) {
-  //       console.log(v.routerName);
-  //       this.items[i].model = true
-  //     }
-  //   })
-  // },
+  mounted() {
+    let routerNameIndex = 0;
+    this.items.forEach((v, i) => {
+      if (v.routerName === this.$route.name) routerNameIndex = i;
+    });
+    this.items[routerNameIndex].model = true;
+  },
 };
 </script>
 
