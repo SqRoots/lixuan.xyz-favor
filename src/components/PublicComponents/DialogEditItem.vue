@@ -125,7 +125,7 @@ export default {
       axios
       .post(url, params).then((response) => {
         this.queryResult = response.data;
-        if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', formData);  // 如果成功，更新当前页面中的数据
+        if (response.data.substring(0, 5) === '【未登录】') this.$emit('eSucceed', formData);  // 如果成功，更新当前页面中的数据
       });
       this.valueShowDialog = false;
       this.valueShowResultDialog = true;

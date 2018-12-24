@@ -2,17 +2,17 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap justify-start>
       <!-- 项目卡片 -->
-      <v-flex v-for="data in bodyData" :key="data.id" xs12 sm6 md4 lg3 xg2>
+      <v-flex v-for="item in bodyData" :key="item.id" xs12 sm6 md4 lg3 xg2>
         <v-toolbar height="30px" light color="rgba(50,70,0,0.5)">
           <v-toolbar-title style="font-size:16px;">
-            <a :href="data.url" target="_blank">{{data.name}} <v-icon style="color:#ccc;">open_in_new</v-icon></a>
+            <a :href="item.url" target="_blank">{{item.name}} <v-icon style="color:#ccc;">open_in_new</v-icon></a>
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
 
           <!-- 功能按钮  编辑按钮 删除按钮-->
-          <v-btn icon small @click="$_ShowEditDialog(data)" v-if='login||true'><v-icon color="#550">create</i></v-icon></v-btn>
-          <v-btn icon small @click="$_ShowDeleteDialog(data)" v-if='login||true'><v-icon color="#550">delete_outline</v-icon></v-btn>
+          <v-btn icon small @click="$_ShowEditDialog(item)" v-if='login||true'><v-icon color="#550">create</i></v-icon></v-btn>
+          <v-btn icon small @click="$_ShowDeleteDialog(item)" v-if='login||true'><v-icon color="#550">delete_outline</v-icon></v-btn>
 
         </v-toolbar>
 
@@ -20,13 +20,13 @@
         <v-card color="#ccc" overflow-y-hidden>
           <v-card-title style="padding: 16px;">
             <!-- 项目标题 -->
-            <span style="font-weight: bold; margin-right: 5px;">{{data.type}}:</span>   <!-- 项目类型 -->
-            <span>{{data.slogan}}</span>                                                <!-- 项目标语 -->
+            <span style="font-weight: bold; margin-right: 5px;">{{item.type}}:</span>   <!-- 项目类型 -->
+            <span>{{item.slogan}}</span>                                                <!-- 项目标语 -->
           </v-card-title>
           <!-- 项目内容 -->
           <v-card-text overflow-y-hidden
             class="text-sm-left"
-            v-html="data.description_html"
+            v-html="item.description_html"
             style="padding: 0 16px 16px 16px;"
           >
           </v-card-text>
