@@ -90,6 +90,7 @@ export default {
     },
     $_getBodyData(routerName) {                               // 从服务器获取数据
       const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
+      // const url = 'https://lixuan.xyz/blog/x-c/web-data.json';
       axios
       .get(url, { params: { catalog: routerName } })
       .then((response) => {

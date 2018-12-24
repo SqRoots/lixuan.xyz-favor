@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style media="screen">
+  /* 网站背景颜色 */
+  body,.application--wrap{
+    background-color: #dedcd4;
+  }
   /* 导航背景颜色 */
   .v-navigation-drawer.v-navigation-drawer--clipped.v-navigation-drawer--fixed.v-navigation-drawer--open.theme--light {
     background: #ceccc4;
