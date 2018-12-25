@@ -9,8 +9,23 @@ if (is_user_logged_in()) {
   $login = true;
 }
 
+switch ($_GET['catalog']) {
+    case 'Web':
+        $sql = 'select * from web';
+        break;
+    case 'Data':
+        $sql = 'select * from data';
+        break;
+    case 'Software':
+        $sql = 'select * from software';
+        break;
+    case 'Motto':
+        $sql = 'select * from motto';
+        break;
+}
+
 $db = new SQLite3('collection.sqlite3');
-$statement = $db->prepare('select * from web');
+$statement = $db->prepare($sql);
 $result = $statement->execute();
 
 $data = array();

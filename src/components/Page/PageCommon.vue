@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import Header from './PageWeb/Header';
-import Body from './PageWeb/Body';
+import Header from './PageCommon/Header';
+import Body from './PageCommon/Body';
 // import Footer from './PageWeb/Footer';
 
 export default {
-  name: 'PageWeb',
+  name: 'PageCommon',
   components: {
     'x-header': Header,
     'x-body': Body,

@@ -73,6 +73,7 @@ export default {
     $_submit(formData) {
       const url = 'https://lixuan.xyz/blog/x-c/web-edit-category.php';
       const params = new URLSearchParams();
+      params.append('catalog', this.$route.name);
       params.append('old_category', this.formData.old_category);
       params.append('new_category', this.formData.new_category);
       params.append('visible', this.formData.visible);

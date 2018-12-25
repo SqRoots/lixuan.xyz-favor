@@ -5,8 +5,23 @@ header('Access-Control-Allow-Method:POST,GET');    //允许访问的方式
 
 require_once '/www/wwwroot/lixuan.xyz/blog/wp-load.php';
 if (  is_user_logged_in() ) {
-    $db = new SQLite3('collection.sqlite3');
-	$statement = $db->prepare('delete FROM web WHERE id = :id;');
+  switch ($_GET['catalog']) {
+      case 'Web':
+          $table = 'web';
+          break;
+      case 'Data':
+          $table = 'data';
+          break;
+      case 'Software':
+          $table = 'software';
+          break;
+      case 'Motto':
+          $table = 'motto';
+          break;
+  }
+
+  $db = new SQLite3('collection.sqlite3');
+	$statement = $db->prepare("delete FROM {$table} WHERE id = :id;");
 	$statement->bindValue(':id', $_GET["id"]);
 	$result = $statement->execute();
 	var_dump($result);

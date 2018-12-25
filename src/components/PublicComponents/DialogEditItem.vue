@@ -111,6 +111,7 @@ export default {
     $_submit(formData) {
       const url = 'https://lixuan.xyz/blog/x-c/web-edit.php';
       const params = new URLSearchParams();
+      params.append('catalog', this.$route.name);
       params.append('id', this.formData.id);
       params.append('name', this.formData.name);
       params.append('name_cn', this.formData.name_cn);

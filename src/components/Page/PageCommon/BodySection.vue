@@ -121,5 +121,11 @@ export default {
     margin-left: -5px;
     padding: 0;
   }
+  .v-toolbar.theme--light {
+    border-radius: 8px 8px 5px 5px;
+  }
+  .v-card.theme--light{
+    border-radius: 5px;
+  }
 
 </style>

@@ -7,10 +7,24 @@ require_once '/www/wwwroot/lixuan.xyz/blog/wp-load.php';
 
 if ( is_user_logged_in() ) {
   // wp_get_current_user();
+  switch ($_GET['catalog']) {
+      case 'Web':
+          $table = 'web';
+          break;
+      case 'Data':
+          $table = 'data';
+          break;
+      case 'Software':
+          $table = 'software';
+          break;
+      case 'Motto':
+          $table = 'motto';
+          break;
+  }
 
   $db = new SQLite3('collection.sqlite3');
-  $stmt = $db->prepare('
-    update web
+  $stmt = $db->prepare("
+    update {$table}
     set
     name=:name,
     name_cn=:name_cn,
@@ -23,7 +37,7 @@ if ( is_user_logged_in() ) {
     visible=:visible,
     description_html=:description_html
     where id=:id
-  ');
+  ");
 
   $visible = $_POST['visible']? 1:0;
 

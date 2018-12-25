@@ -11,9 +11,9 @@ const NavigationBodyData = [
     model: false,
     icon: 'public',
     children: [
-      { icon: 'language', text: '综合', query: { category: '综合' } },
-      { icon: 'functions', text: '理科', query: { category: '理科' } },
-      { icon: 'account_circle', text: '博客', query: { category: '博客' } },
+      { model: 'inactive', icon: 'language', text: '综合', query: { category: '综合' } },
+      { model: 'inactive', icon: 'functions', text: '理科', query: { category: '理科' } },
+      { model: 'inactive', icon: 'account_circle', text: '博客', query: { category: '博客' } },
     ],
   },
   {
@@ -22,9 +22,11 @@ const NavigationBodyData = [
     model: false,
     icon: 'archive',
     children: [
-      { icon: 'insert_drive_file', text: '论文', query: { category: '论文' } },
-      { icon: 'place', text: '地理', query: { category: '地理' } },
-      { icon: 'attach_money', text: '财经', query: { category: '财经' } },
+      { model: 'inactive', icon: 'fas fa-database', text: '综合', query: { category: '综合' } },
+      { model: 'inactive', icon: 'fab fa-pied-piper', text: '文献', query: { category: '文献' } },
+      { model: 'inactive', icon: 'fas fa-language', text: '语言', query: { category: '语言' } },
+      { model: 'inactive', icon: 'fas fa-globe-asia', text: 'GIS', query: { category: 'GIS' } },
+      // { icon: 'attach_money', text: '财经', query: { category: '财经' } },
     ],
   },
   {
@@ -33,10 +35,11 @@ const NavigationBodyData = [
     model: false,
     icon: 'widgets',
     children: [
-      { icon: 'functions', text: '数理统计' },
-      { icon: 'photo', text: '多媒体' },
-      { icon: 'storage', text: '数据库' },
-      { icon: 'settings', text: '系统工具' },
+      { model: 'inactive', icon: 'functions', text: '数理', query: { category: '数理' } },
+      { model: 'inactive', icon: 'widgets', text: '其它', query: { category: '其它' } },
+      // { icon: 'photo', text: '多媒体' },
+      // { icon: 'storage', text: '数据库' },
+      // { icon: 'settings', text: '系统工具' },
     ],
   },
   {
