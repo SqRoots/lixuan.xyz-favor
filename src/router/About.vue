@@ -4,10 +4,10 @@
 </template>
 
 <script>
-  import PageCommon from '@/components/Page/PageCommon';
+  import PageAbout from '@/components/Page/PageAbout';
 
   export default {
-    components: { 'x-content': PageCommon },
+    components: { 'x-content': PageAbout },
   };
 </script>
 

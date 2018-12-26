@@ -7,7 +7,7 @@ require_once '/www/wwwroot/lixuan.xyz/blog/wp-load.php';
 
 if ( is_user_logged_in() ) {
   // wp_get_current_user();
-  switch ($_GET['catalog']) {
+  switch ($_POST['catalog']) {
       case 'Web':
           $table = 'web';
           break;
@@ -33,7 +33,7 @@ if ( is_user_logged_in() ) {
     establisher=:establisher,
     category=:category,
     type=:type,
-    "order"=:order,
+    \"order\"=:order,
     visible=:visible,
     description_html=:description_html
     where id=:id

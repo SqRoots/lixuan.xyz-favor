@@ -4,10 +4,10 @@
 </template>
 
 <script>
-  import PageCommon from '@/components/Page/PageCommon';
+  import PageMotto from '@/components/Page/PageMotto';
 
   export default {
-    components: { 'x-content': PageCommon },
+    components: { 'x-content': PageMotto },
   };
 </script>
 

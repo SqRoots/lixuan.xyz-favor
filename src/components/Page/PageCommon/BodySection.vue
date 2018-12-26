@@ -127,5 +127,7 @@ export default {
   .v-card.theme--light{
     border-radius: 5px;
   }
-
+  .container.grid-list-md .layout .flex {
+    min-width: 300px;
+  }
 </style>

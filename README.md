@@ -2,27 +2,50 @@
 
 > my favorite!
 
-## Build Setup
+## 1. Require
+### 1.1 node.js
+- [node.js](https://nodejs.org/)
+
+### 1.2 vue-cli
+
+```bash
+$ npm install @vue/cli -g
+```
+
+
+## 2. Install
 
 ``` bash
 # install dependencies
 npm install
-
+```
+## 3. Usage
+``` bash
 # serve with hot reload at localhost:8080
 npm run dev
+```
 
+``` bash
 # build for production with minification
 npm run build
+```
 
+``` bash
 # build for production and view the bundle analyzer report
 npm run build --report
+```
 
+``` bash
 # run unit tests
 npm run unit
+```
 
+``` bash
 # run e2e tests
 npm run e2e
+```
 
+``` bash
 # run all tests
 npm test
 ```

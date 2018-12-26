@@ -2,6 +2,7 @@ const NavigationBodyData = [
   {
     text: '首页',
     routerName: 'Home',
+    model: false,
     icon: 'home',
     children: [],
   },
@@ -52,6 +53,7 @@ const NavigationBodyData = [
   {
     text: '关于',
     routerName: 'About',
+    model: false,
     icon: 'info',
     children: [],
   },

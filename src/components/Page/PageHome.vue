@@ -49,7 +49,6 @@ import shuxue6PNG from '@/assets/images/shuxue6.com.png';
 
 export default {
   name: 'PageHome',
-
   data() {
     return {
       myWeb: [

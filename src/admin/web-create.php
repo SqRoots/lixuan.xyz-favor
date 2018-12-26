@@ -7,7 +7,7 @@ require_once '/www/wwwroot/lixuan.xyz/blog/wp-load.php';
 
 if ( is_user_logged_in() ) {
   wp_get_current_user();
-  switch ($_GET['catalog']) {
+  switch ($_POST['catalog']) {
       case 'Web':
           $table = 'web';
           break;
@@ -25,7 +25,7 @@ if ( is_user_logged_in() ) {
   $db = new SQLite3('collection.sqlite3');
   $stmt = $db->prepare("
     insert into {$table}
-    (user_id,name,name_cn,url,slogan,establisher,category,type,"order",visible,description_html)
+    (user_id,name,name_cn,url,slogan,establisher,category,type,\"order\",visible,description_html)
     values
     (:user_id,:name,:name_cn,:url,:slogan,:establisher,:category,:type,:order,:visible,:description_html)
   ");
