@@ -11,8 +11,8 @@
           <v-spacer></v-spacer>
 
           <!-- 功能按钮  编辑按钮 删除按钮-->
-          <v-btn icon small @click="$_ShowEditDialog(item)" v-if='login||true'><v-icon color="#550">create</i></v-icon></v-btn>
-          <v-btn icon small @click="$_ShowDeleteDialog(item)" v-if='login||true'><v-icon color="#550">delete_outline</v-icon></v-btn>
+          <v-btn icon small @click="$_ShowEditDialog(item)" v-if='login'><v-icon color="#550">create</i></v-icon></v-btn>
+          <v-btn icon small @click="$_ShowDeleteDialog(item)" v-if='login'><v-icon color="#550">delete_outline</v-icon></v-btn>
 
         </v-toolbar>
 

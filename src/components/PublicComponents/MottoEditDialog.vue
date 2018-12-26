@@ -4,37 +4,26 @@
       <v-form>
         <v-card>
           <v-card-title class="headline blue darken-4">
-            <span class="headline white--text">新建</span>
+            <span class="headline white--text">编辑</span>
           </v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs6>
-                  <v-text-field v-model="formData.name" label="原名" required></v-text-field>
+                  <v-text-field v-model="formData.source" label="来源" required></v-text-field>
                 </v-flex>
                 <v-flex xs6>
-                  <v-text-field v-model="formData.name_cn" label="译名" required></v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-text-field v-model="formData.url" label="网站地址" required></v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-text-field v-model="formData.slogan" label="Slogan" required></v-text-field>
-                </v-flex>
-
-                <v-flex xs12 sm6 md4 lg3>
-                  <v-text-field v-model="formData.establisher" label="创办人" required></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md4 lg3>
-                  <v-text-field v-model="formData.category" label="分类" required></v-text-field>
+                  <v-text-field v-model="formData.author" label="作者" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4 lg3>
                   <v-text-field v-model="formData.type" label="类型" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4 lg3>
-                  <v-text-field v-model="formData.order" label="排序" required></v-text-field>
+                  <v-text-field v-model="formData.tags" label="标签" required></v-text-field>
                 </v-flex>
-
+                <v-flex xs12 sm6 md4 lg3>
+                  <v-text-field v-model="formData.id" label="ID" disabled></v-text-field>
+                </v-flex>
                 <v-flex xs12 sm6 md4 lg3>
                   <v-switch
                     :label="formData.visible ? '可见' : '隐藏'"
@@ -44,14 +33,14 @@
                 <v-flex xs12>
                   <v-textarea
                     outline
-                    v-model="formData.description_html"
-                    label="描述"
+                    v-model="formData.content_html"
+                    label="内容"
                   ></v-textarea>
                 </v-flex>
               </v-layout>
             </v-container>
 
-            <small>*也许该写点什么提示吧</small>
+            <!-- <small>*也许该写点什么提示吧</small> -->
           </v-card-text>
 
           <v-divider></v-divider>
@@ -78,7 +67,7 @@ import DialogResult from '@/components/PublicComponents/DialogResult';
 const axios = require('axios');
 
 export default {
-  name: 'DialogCreateItem',
+  name: 'DialogEditItem',
   components: {
     'x-dialog-result': DialogResult,
   },
@@ -88,38 +77,41 @@ export default {
       valueShowResultDialog: false,
       queryResult: '',
       formData: {
-        name: '',
-        name_cn: '',
-        url: '',
-        slogan: '',
-        establisher: '',
-        category: '',
+        id: '',
         type: '',
-        order: '',
+        source: '',
+        author: '',
+        tags: '',
+        user_id: '',
         visible: true,
-        description_html: '',
+        color: '',
+        order: '',
+        like_num: '',
+        score: '',
+        title: '',
+        url: '',
+        content_html: '',
+        logo_uri: '',
+        picture_uri: '',
       },
     };
   },
   methods: {
     $_submit(formData) {
-      const url = 'https://lixuan.xyz/blog/x-c/web-create.php';
+      const url = 'https://lixuan.xyz/blog/x-c/web-edit.php';
       const params = new URLSearchParams();
       params.append('catalog', this.$route.name);
-      params.append('name', this.formData.name);
-      params.append('name_cn', this.formData.name_cn);
-      params.append('url', this.formData.url);
-      params.append('slogan', this.formData.slogan);
-      params.append('establisher', this.formData.establisher);
-      params.append('category', this.formData.category);
+      params.append('id', this.formData.id);
       params.append('type', this.formData.type);
-      params.append('order', this.formData.order);
+      params.append('source', this.formData.source);
+      params.append('author', this.formData.author);
+      params.append('tags', this.formData.tags);
       params.append('visible', this.formData.visible);
-      params.append('description_html', this.formData.description_html);
+      params.append('content_html', this.formData.content_html);
       axios
       .post(url, params).then((response) => {
         this.queryResult = response.data;
-        if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', formData);  // 如果成功，更新当前页面中的数据
+        if (response.data.substring(0, 5) === '【未登录】') this.$emit('eSucceed', formData);  // 如果成功，更新当前页面中的数据
       });
       this.valueShowDialog = false;
       this.valueShowResultDialog = true;
@@ -139,7 +131,7 @@ export default {
       }
     },
     dData(val) {
-      this.formData.category = val.category;
+      this.formData = val;
     },
   },
 };

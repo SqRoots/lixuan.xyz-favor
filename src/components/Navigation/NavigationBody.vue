@@ -64,7 +64,7 @@ export default {
     $_toggleSubtile() {                                              // 切换二级导航的激活状态
       for (let i = 0; i < this.items.length; i += 1) {
         for (let ii = 0; ii < this.items[i].children.length; ii += 1) {
-          if (this.items[i].children[ii]) this.items[i].children[ii].model = 'inactive';
+          this.items[i].children[ii].model = 'inactive';
         }
       }
       return 'active';
@@ -80,7 +80,7 @@ export default {
     this.items[routerNameIndex].children.forEach((v, i) => {
       if (v.query.category === this.$route.query.category) routerQueryIndex = i;
     });
-    this.items[routerNameIndex].children[routerQueryIndex].model = 'active';
+    if (this.items[routerNameIndex].children.length > 0) this.items[routerNameIndex].children[routerQueryIndex].model = 'active';
   },
 };
 </script>

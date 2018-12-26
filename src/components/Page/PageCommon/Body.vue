@@ -8,8 +8,8 @@
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{category}}</h2></v-toolbar-title>                                                   <!--  类别名称  -->
           <v-spacer></v-spacer>
-          <v-btn icon v-if="login||true" @click="$_ShowEditCategoryDialog(category)"><v-icon>create</v-icon></v-btn> <!--  编辑按钮  -->
-          <v-btn icon v-if="login||true" @click="$_ShowCreateDialog(category)"><v-icon>add</v-icon></v-btn>          <!--  添加按钮  -->
+          <v-btn icon v-if="login" @click="$_ShowEditCategoryDialog(category)"><v-icon>create</v-icon></v-btn> <!--  编辑按钮  -->
+          <v-btn icon v-if="login" @click="$_ShowCreateDialog(category)"><v-icon>add</v-icon></v-btn>          <!--  添加按钮  -->
         </v-toolbar>
 
         <!-- 分类 内容（项目） -->

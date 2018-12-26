@@ -18,36 +18,51 @@
         <v-icon color="#415458" @click="$_randomChoiceOneData()">fas fa-dice</v-icon>
         <br>
         <v-btn color="#415458" dark @click="$_randomChoiceOneData()">换一条</v-btn>
+        <br>
+
+        <v-icon @click="$_ShowDeleteDialog(randomOneData)" v-if='login' color="#415">fas fa-trash</v-icon>
+        <span>&nbsp;</span>
+        <v-icon @click="$_ShowCreateDialog()" v-if='login' color="#415">fas fa-plus</v-icon>
+        <span>&nbsp;</span>
+        <v-icon @click="$_ShowEditDialog(randomOneData)" v-if='login' color="#415">fas fa-pen</v-icon>
       </v-flex>
 
     </v-layout>
-    <!-- 编辑分类 对话框 -->
-    <x-dialog-edit-category
-      @eHideDialog="valueEditCategoryDialog=false"
-      @eSucceed="$_reflashCategory"
-      :qShow="valueEditCategoryDialog"
-      :dData="dataEditCategoryDialog"
+    <!-- 删除项目 对话框 -->
+    <x-dialog-delete-item
+      @eHideDialog="valueDeleteItemDialog=false"
+      @eSucceed="$_reflashDeleteItem"
+      :qShow="valueDeleteItemDialog"
+      :dData="dataDeleteDialog"
     />
     <!-- 新建项目 对话框 -->
     <x-dialog-create-item
       @eHideDialog="valueCreateItemDialog=false"
       :qShow="valueCreateItemDialog"
-      :dData="dataCreateDialog"
+    />
+    <!--编辑 对话框 -->
+    <x-dialog-edit-item
+      @eHideDialog="valueEditItemDialog=false"
+      @eSucceed="$_reflashEditItem"
+      :qShow="valueEditItemDialog"
+      :dData="dataEditDialog"
     />
   </v-container>
 </template>
 
 <script>
-import DialogCreateItem from '@/components/PublicComponents/DialogCreateItem';
-import DialogEditCategory from '@/components/PublicComponents/DialogEditCategory';
+import MottoDeleteDialog from '@/components/PublicComponents/MottoDeleteDialog';
+import MottoCreateDialog from '@/components/PublicComponents/MottoCreateDialog';
+import MottoEditDialog from '@/components/PublicComponents/MottoEditDialog';
 
 const axios = require('axios');
 
 export default {
   name: 'PageMotto',
   components: {
-    'x-dialog-create-item': DialogCreateItem,
-    'x-dialog-edit-category': DialogEditCategory,
+    'x-dialog-delete-item': MottoDeleteDialog,
+    'x-dialog-create-item': MottoCreateDialog,
+    'x-dialog-edit-item': MottoEditDialog,
   },
   data() {
     return {
@@ -57,37 +72,52 @@ export default {
       randomOneData: {},                 // 随机一条数据
       dataCategoryData: [],              // 目录数据
       login: false,                      // 是否登录
+      valueDeleteItemDialog: false,      // 删除对话框-显示隐藏
+      dataDeleteDialog: {},              // 删除对话框-数据
       valueCreateItemDialog: false,      // 新建对话框-显示隐藏
-      dataCreateDialog: {},              // 新建对话框-数据
-      valueEditCategoryDialog: false,    // 编辑类别对话框-显示隐藏
-      dataEditCategoryDialog: {},        // 编辑类别对话框-数据
+      valueEditItemDialog: false,        // 编辑对话框-显示隐藏
+      dataEditDialog: {},                // 编辑对话框-数据
       queryResult: '',                   // 查询结果
     };
   },
   methods: {
-    $_ShowCreateDialog(data) {
+    $_ShowDeleteDialog(data) {        // 显示删除项目对话框
+      this.dataDeleteDialog = data;
+      this.valueDeleteItemDialog = true;
+    },
+    $_reflashDeleteItem(id) {         // 删除项目成功时，也将其从页面中删除
+      let index = -1;
+      this.bodyData.forEach((v, i) => {
+        if (v.id === data.id) index = i;
+      });
+      if (id >= 0) this.bodyData.splice(index, 1);
+      this.$_randomChoiceOneData();
+    },
+    $_ShowCreateDialog() {
       this.valueCreateItemDialog = true;
-      this.dataCreateDialog = { category: data };
     },
-    $_reflashCategory() {
-      return 1;
+    $_reflashCreateItem(data) {         // 删除项目成功时，也将其从页面中删除
+      this.bodyData.push(data);
+      this.randomOneData = data;
     },
-    $_ShowEditCategoryDialog(data) {
-      this.valueEditCategoryDialog = true;
-      this.dataEditCategoryDialog = { category: data };
+    $_ShowEditDialog(data) {
+      this.valueEditItemDialog = true;
+      this.dataEditDialog = data;
+    },
+    $_reflashEditItem(data) {                              // 编辑项目成功时，也将其从页面中更新
+      this.bodyData.forEach((v, i) => {
+        if (v.id === data.id) this.bodyData[i] = data;
+      });
+      this.randomOneData = data;
     },
     $_getBodyData(routerName) {                               // 从服务器获取数据
       const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
-      // const url = 'https://lixuan.xyz/blog/x-c/web-data.json';
       axios
       .get(url, { params: { catalog: routerName } })
       .then((response) => {
         this.login = response.data.login;                    // 是否登录
         this.bodyData = response.data.data;                  // 项目数据
         this.$_randomChoiceOneData();                             // 生成页面数据
-        const li = new Set();
-        response.data.data.forEach(x => li.add(x.category));
-        this.dataCategoryData = Array.from(li);              // 项目类别数据
       });
     },
     $_randomChoiceOneData() {

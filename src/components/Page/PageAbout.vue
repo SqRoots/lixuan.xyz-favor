@@ -1,35 +1,38 @@
 <template>
-  <v-container style="max-width: 600px;">
-    <v-timeline dense clipped>
-      <v-timeline-item
-        fill-dot
-        class="white--text mb-5"
-        color="orange"
-        large
-      >
-        <span slot="icon">关于</span>
-      </v-timeline-item>
+  <v-container grid-list-xl text-xs-center>
+    <v-layout align-center justify-center column fill-height>
+      <v-flex>
+        <h1>关于</h1>
+        <h4>我的一些网络产出介绍</h4>
+      </v-flex>
 
-      <v-timeline-item
-         v-for="info in infomation"
-        class="mb-3"
-        color="grey"
-        small
-      >
-        <h2 :class="`title font-weight-light mb-3 ${info.color}--text`">{{info.title}}</h2>
-        <v-layout justify-space-between>
-          <v-flex xs5 v-text="info.title"></v-flex>
-          <v-flex xs7 text-xs-right v-html="info.content"></v-flex>
-        </v-layout>
-        <!-- <v-layout justify-space-between>
-          <v-flex>
-            <h2 :class="`title font-weight-light mb-3 ${info.color}--text`">{{info.title}}</h2>
-            <div v-html="info.content" text-xs-right></div>
-          </v-flex>
-        </v-layout> -->
-      </v-timeline-item>
-
-    </v-timeline>
+      <v-flex style="min-width:800px;">
+        <v-divider/>
+        <v-timeline>
+          <v-timeline-item
+            v-for="(info,i) in infomation"
+            :color="info.color"
+            fill-dot
+            :left='i%2==0'
+            :right='i%2==1'
+            small
+          >
+            <v-card>
+              <v-card-title :class="`${info.color} ${i%2==0?'justify-end':'justify-start'}`">
+                <h3 class="headline white--text font-weight-light">{{info.title}}</h3>
+              </v-card-title>
+              <v-container>
+                <v-layout align-center justify-center column fill-height>
+                  <v-flex xs10>
+                    <div v-html="info.content"></div>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -63,27 +66,27 @@ export default {
         {
           title: '主页',
           color: 'cyan',
-          content: '<p>Vue</p><p>Vuetify</p><p>Axios</p>',
+          content: 'Vue<br>Vuetify<br>Axios',
         },
         {
           title: '博客',
           color: 'green',
-          content: '<ul><li>Wordpress</li></ul>',
+          content: '<p>Wordpress</p>',
         },
         {
           title: 'Mathematica问答社区',
           color: 'pink',
-          content: '<ul><li>Wordpress</li><li>Question2Answer</li></ul>',
+          content: '<p>Wordpress</p><p>Question2Answer</p>',
         },
         {
           title: '数学之路',
-          color: 'amber',
-          content: '<ul><li>Discuz</li></ul>',
+          color: 'brown',
+          content: '<p>Discuz</p>',
         },
         {
           title: '笔记',
           color: 'orange',
-          content: '<ul><li>GitBoook</li></ul>',
+          content: '<p>GitBoook</p>',
         }
       ]
     };
