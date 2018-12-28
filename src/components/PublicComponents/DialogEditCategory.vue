@@ -49,6 +49,7 @@
 
 <script>
 import DialogResult from '@/components/PublicComponents/DialogResult';
+import APIURL from '@/components/API';
 
 const axios = require('axios');
 
@@ -71,14 +72,14 @@ export default {
   },
   methods: {
     $_submit(formData) {
-      const url = 'https://lixuan.xyz/blog/x-c/web-edit-category.php';
+      // const url = 'https://lixuan.xyz/blog/x-c/web-edit-category.php';
       const params = new URLSearchParams();
       params.append('catalog', this.$route.name);
       params.append('old_category', this.formData.old_category);
       params.append('new_category', this.formData.new_category);
       params.append('visible', this.formData.visible);
       axios
-      .post(url, params).then((response) => {
+      .post(APIURL.EditCategoryPostURL, params).then((response) => {
         this.queryResult = response.data;
         if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', formData);  // 如果成功，更新当前页面中的数据
       });

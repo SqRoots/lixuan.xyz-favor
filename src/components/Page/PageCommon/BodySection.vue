@@ -5,14 +5,17 @@
       <v-flex v-for="item in bodyData" :key="item.id" xs12 sm6 md4 lg3 xg2>
         <v-toolbar height="30px" light color="rgba(50,70,0,0.5)">
           <v-toolbar-title style="font-size:16px;">
-            <a :href="item.url" target="_blank">{{item.name}} <v-icon style="color:#ccc;">open_in_new</v-icon></a>
+            <v-tooltip top>
+              <a slot="activator" :href="item.url" target="_blank">{{item.name}} <v-icon style="color:#ccc;">open_in_new</v-icon></a>
+              <span>默认在新窗口打开：<b>{{item.name}}</b></span>
+            </v-tooltip>
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
 
           <!-- 功能按钮  编辑按钮 删除按钮-->
-          <v-btn icon small @click="$_ShowEditDialog(item)" v-if='login'><v-icon color="#550">create</i></v-icon></v-btn>
-          <v-btn icon small @click="$_ShowDeleteDialog(item)" v-if='login'><v-icon color="#550">delete_outline</v-icon></v-btn>
+          <v-btn icon small @click="$_ShowEditDialog(item)" v-if='$cookies.get("login")==="login"'><v-icon color="#550">create</i></v-icon></v-btn>
+          <v-btn icon small @click="$_ShowDeleteDialog(item)" v-if='$cookies.get("login")==="login"'><v-icon color="#550">delete_outline</v-icon></v-btn>
 
         </v-toolbar>
 
@@ -71,7 +74,6 @@ export default {
   },
   props: [
     'bodyData',
-    'login',
   ],
   methods: {
     $_ShowEditDialog(data) {          // 显示编辑项目对话框

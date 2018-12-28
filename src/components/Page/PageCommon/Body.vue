@@ -8,13 +8,21 @@
           <v-icon style="margin: 0;">ac_unit</v-icon>
           <v-toolbar-title><h2>{{category}}</h2></v-toolbar-title>                                                   <!--  类别名称  -->
           <v-spacer></v-spacer>
-          <v-btn icon v-if="login" @click="$_ShowEditCategoryDialog(category)"><v-icon>create</v-icon></v-btn> <!--  编辑按钮  -->
-          <v-btn icon v-if="login" @click="$_ShowCreateDialog(category)"><v-icon>add</v-icon></v-btn>          <!--  添加按钮  -->
+          <v-btn icon v-if="$cookies.get('login')==='login'" @click="$_ShowEditCategoryDialog(category)"><v-icon>create</v-icon></v-btn> <!--  编辑按钮  -->
+          <v-btn icon v-if="$cookies.get('login')==='login'" @click="$_ShowCreateDialog(category)"><v-icon>add</v-icon></v-btn>          <!--  添加按钮  -->
         </v-toolbar>
 
         <!-- 分类 内容（项目） -->
-        <x-body-section :login="!!login" :bodyData="$_getSectionData(bodyData, category)"/>
+        <x-body-section :bodyData="$_getSectionData(bodyData, category)"/>
       </v-flex>
+      <!-- 加载进度 -->
+      <v-progress-circular
+        v-if="dataCategoryData.length===0"
+        :size="70"
+        :width="7"
+        color="grey"
+        indeterminate
+      />
     </v-layout>
     <!-- 生成分类 结束 -->
 
@@ -35,9 +43,11 @@
 </template>
 
 <script>
+import APIURL from '@/components/API';
 import DialogCreateItem from '@/components/PublicComponents/DialogCreateItem';
 import DialogEditCategory from '@/components/PublicComponents/DialogEditCategory';
 import BodySection from './BodySection';
+
 
 const axios = require('axios');
 
@@ -54,7 +64,6 @@ export default {
       routerQuery: this.$route.query,
       bodyData: [],         // 全部数据
       dataCategoryData: [],      // 目录数据
-      login: false,         // 是否登录
       valueCreateItemDialog: false,      // 新建对话框-显示隐藏
       dataCreateDialog: {},              // 新建对话框-数据
       valueEditCategoryDialog: false,    // 编辑类别对话框-显示隐藏
@@ -89,12 +98,11 @@ export default {
       this.bodyData = tempData;
     },
     $_getBodyData(routerName) {                               // 从服务器获取数据
-      const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
+      // const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
       // const url = 'https://lixuan.xyz/blog/x-c/web-data.json';
       axios
-      .get(url, { params: { catalog: routerName } })
+      .get(APIURL.GetDataURL, { params: { catalog: routerName } })
       .then((response) => {
-        this.login = response.data.login;                    // 是否登录
         this.bodyData = response.data.data;                  // 项目数据
         const li = new Set();
         response.data.data.forEach(x => li.add(x.category));
@@ -138,5 +146,11 @@ export default {
     margin-top: 20px;
     margin-bottom: 128px;
   }
+  .v-progress-circular {
+    /* position: absolute; */
+    top: 80px;
+    left: 50%;
+    margin-left: -35px;
 
+  }
 </style>

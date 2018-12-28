@@ -38,6 +38,7 @@
 
 <script>
 import DialogResult from '@/components/PublicComponents/DialogResult';
+import APIURL from '@/components/API';
 
 const axios = require('axios');
 
@@ -55,9 +56,9 @@ export default {
   },
   methods: {
     $_toDeleteItem(itemID) {
-      const url = 'https://lixuan.xyz/blog/x-c/web-delete.php';
+      // const url = 'https://lixuan.xyz/blog/x-c/web-delete.php';
       axios
-      .get(url, { params: { id: itemID, catalog: this.$route.name } })
+      .get(APIURL.DeleteItemURL, { params: { id: itemID, catalog: this.$route.name } })
       .then((response) => {
         this.queryResult = response.data;
         if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', itemID);    // 如果成功，更新当前页面中的数据

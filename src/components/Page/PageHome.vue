@@ -23,9 +23,18 @@
             slot-scope="{ hover }"
             :class="`elevation-${hover ? 12 : 2}`"
             class="mx-auto"
-
           >
-            <v-img :src="web.imgsrc" aspect-ratio="1.618"></v-img>
+            <v-img :src="web.imgsrc" :lazy-src="web.imgsrcLazy" aspect-ratio="1.618">
+              <v-layout
+                slot="placeholder"
+                fill-height
+                align-center
+                justify-center
+                ma-0
+              >
+                <v-progress-circular indeterminate color="grey lighten-1"></v-progress-circular>
+              </v-layout>
+            </v-img>
             <v-card-title primary-title>
               <v-layout justify-space row fill-height>
                 <v-flex>
@@ -43,9 +52,12 @@
 </template>
 
 <script>
-import mmaPNG from '@/assets/images/mma.ooo.png';
-import lixPNG from '@/assets/images/lixuan.xyz.png';
-import shuxue6PNG from '@/assets/images/shuxue6.com.png';
+import mmaJPG from '@/assets/images/mma.ooo.jpg';
+import lixJPG from '@/assets/images/lixuan.xyz.jpg';
+import shuxue6JPG from '@/assets/images/shuxue6.com.jpg';
+import mmaJPGLazy from '@/assets/images/mma.ooo.lazy.jpg';
+import lixJPGLazy from '@/assets/images/lixuan.xyz.lazy.jpg';
+import shuxue6JPGLazy from '@/assets/images/shuxue6.com.lazy.jpg';
 
 export default {
   name: 'PageHome',
@@ -55,21 +67,24 @@ export default {
         {
           name: 'Mathematica问答社区',
           href: 'https://mmaqa.com',
-          imgsrc: mmaPNG,
+          imgsrc: mmaJPG,
+          imgsrcLazy: mmaJPGLazy,
           description_html: '创办于2016-04-01',
           size: 3,
         },
         {
           name: '我的博客',
           href: 'https://lixuan.xyz/blog/',
-          imgsrc: lixPNG,
+          imgsrc: lixJPG,
+          imgsrcLazy: lixJPGLazy,
           description_html: '创办于2014-01-10',
           size: 4,
         },
         {
           name: '数学之路',
           href: 'http://shuxue6.com/',
-          imgsrc: shuxue6PNG,
+          imgsrc: shuxue6JPG,
+          imgsrcLazy: shuxue6JPGLazy,
           description_html: '创办于2011年，已经不再维护',
           size: 3,
         },

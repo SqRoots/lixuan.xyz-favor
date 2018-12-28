@@ -11,6 +11,7 @@
         <v-timeline>
           <v-timeline-item
             v-for="(info,i) in infomation"
+            :key="i"
             :color="info.color"
             fill-dot
             :left='i%2==0'
@@ -44,24 +45,6 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-          color: 'red lighten-2',
-          icon: 'mdi-star'
-        },
-        {
-          color: 'purple darken-1',
-          icon: 'mdi-book-variant'
-        },
-        {
-          color: 'green lighten-1',
-          icon: 'mdi-airballoon'
-        },
-        {
-          color: 'indigo',
-          icon: 'mdi-buffer'
-        }
-      ],
       infomation: [
         {
           title: '主页',
@@ -87,8 +70,8 @@ export default {
           title: '笔记',
           color: 'orange',
           content: '<p>GitBoook</p>',
-        }
-      ]
+        },
+      ],
     };
   },
 };
@@ -98,5 +81,11 @@ export default {
 <style scoped>
   h1 {
     text-align: center;
+  }
+  .v-card.theme--light {
+    border-radius: 10px;
+  }
+  .v-card__title {
+    padding: 8px 16px;
   }
 </style>

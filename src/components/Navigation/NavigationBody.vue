@@ -1,6 +1,6 @@
 <template>
   <v-list dense>
-    <template v-for="item in items">
+    <div v-for="item in items">
       <!-- 组 -->
       <v-list-group
         v-if="item.children"
@@ -26,8 +26,7 @@
           :active-class="child.model"
           @click="child.model=$_toggleSubtile();child.model"
           class="navi-child"
-
-          :to="{ name: child.routerName, query: child.query }"
+          :to="{ name: item.routerName, query: child.query }"
         >
           <v-list-tile-action v-if="child.icon">
             <v-icon>{{ child.icon }}</v-icon>
@@ -40,7 +39,7 @@
         </v-list-tile>
       </v-list-group>
       <!-- 组 - 结束 -->
-    </template>
+    </div>
   </v-list>
 </template>
 

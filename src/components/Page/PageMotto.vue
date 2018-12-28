@@ -13,18 +13,27 @@
         <h4>{{randomOneData.author}}</h4>
         <br>
         <div class="subheading" v-html="randomOneData.content_html"></div>
+        <!-- 加载进度 -->
+        <v-progress-circular
+          v-if="bodyData.length===0"
+          :size="70"
+          :width="7"
+          color="grey"
+          indeterminate
+        />
       </v-flex>
+
       <v-flex xs12 class="fix-bottom">
         <v-icon color="#415458" @click="$_randomChoiceOneData()">fas fa-dice</v-icon>
         <br>
         <v-btn color="#415458" dark @click="$_randomChoiceOneData()">换一条</v-btn>
         <br>
 
-        <v-icon @click="$_ShowDeleteDialog(randomOneData)" v-if='login' color="#415">fas fa-trash</v-icon>
+        <v-icon @click="$_ShowDeleteDialog(randomOneData)" v-if='$cookies.get("login")==="login"' color="#415">fas fa-trash</v-icon>
         <span>&nbsp;</span>
-        <v-icon @click="$_ShowCreateDialog()" v-if='login' color="#415">fas fa-plus</v-icon>
+        <v-icon @click="$_ShowCreateDialog()" v-if='$cookies.get("login")==="login"' color="#415">fas fa-plus</v-icon>
         <span>&nbsp;</span>
-        <v-icon @click="$_ShowEditDialog(randomOneData)" v-if='login' color="#415">fas fa-pen</v-icon>
+        <v-icon @click="$_ShowEditDialog(randomOneData)" v-if='$cookies.get("login")==="login"' color="#415">fas fa-pen</v-icon>
       </v-flex>
 
     </v-layout>
@@ -54,6 +63,7 @@
 import MottoDeleteDialog from '@/components/PublicComponents/MottoDeleteDialog';
 import MottoCreateDialog from '@/components/PublicComponents/MottoCreateDialog';
 import MottoEditDialog from '@/components/PublicComponents/MottoEditDialog';
+import APIURL from '@/components/API';
 
 const axios = require('axios');
 
@@ -85,12 +95,12 @@ export default {
       this.dataDeleteDialog = data;
       this.valueDeleteItemDialog = true;
     },
-    $_reflashDeleteItem(id) {         // 删除项目成功时，也将其从页面中删除
+    $_reflashDeleteItem(data) {         // 删除项目成功时，也将其从页面中删除
       let index = -1;
       this.bodyData.forEach((v, i) => {
         if (v.id === data.id) index = i;
       });
-      if (id >= 0) this.bodyData.splice(index, 1);
+      if (index >= 0) this.bodyData.splice(index, 1);
       this.$_randomChoiceOneData();
     },
     $_ShowCreateDialog() {
@@ -111,11 +121,9 @@ export default {
       this.randomOneData = data;
     },
     $_getBodyData(routerName) {                               // 从服务器获取数据
-      const url = 'https://lixuan.xyz/blog/x-c/web-get.php';
       axios
-      .get(url, { params: { catalog: routerName } })
+      .get(APIURL.GetDataURL, { params: { catalog: routerName } })
       .then((response) => {
-        this.login = response.data.login;                    // 是否登录
         this.bodyData = response.data.data;                  // 项目数据
         this.$_randomChoiceOneData();                             // 生成页面数据
       });
@@ -155,5 +163,4 @@ h1 {
 .flex.main-content {
   height: 280px;
 }
-
 </style>

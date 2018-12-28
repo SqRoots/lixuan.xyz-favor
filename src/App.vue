@@ -36,8 +36,12 @@
 <script>
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import APIURL from '@/components/API';
+
+const axios = require('axios');
 
 export default {
+  name: 'App',
   components: {
     'x-navigation': Navigation,
     'x-footer': Footer,
@@ -48,8 +52,17 @@ export default {
     };
   },
   methods: {
+    getLoginQ() {               // 判断是否登录
+      axios
+      .get(APIURL.GetLoginQURL)
+      .then((response) => {
+        this.$cookies.set('login', response.data);
+      });
+    },
   },
-  name: 'App',
+  mounted() {
+    this.getLoginQ();         // 判断是否登录
+  },
 };
 </script>
 

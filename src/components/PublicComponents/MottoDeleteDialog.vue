@@ -3,9 +3,7 @@
     <v-dialog v-model="valueShowDialog" width="400" >
       <v-card>
       <v-card-title class="headline blue darken-4 white--text">确定删除？</v-card-title>
-
       <v-card-text>
-
         <v-container>
           <v-layout align-start justify-center column>
             <v-flex xs6><h3><span class="grey--text">格言ID : </span>{{dData.id}}</h3></v-flex>
@@ -15,7 +13,6 @@
             </v-flex>
           </v-layout>
         </v-container>
-
       </v-card-text>
 
       <v-divider></v-divider>
@@ -38,6 +35,7 @@
 
 <script>
 import DialogResult from '@/components/PublicComponents/DialogResult';
+import APIURL from '@/components/API';
 
 const axios = require('axios');
 
@@ -55,9 +53,9 @@ export default {
   },
   methods: {
     $_toDeleteItem(itemID) {
-      const url = 'https://lixuan.xyz/blog/x-c/web-delete.php';
+      // const url = 'https://lixuan.xyz/blog/x-c/web-delete.php';
       axios
-      .get(url, { params: { id: itemID, catalog: this.$route.name } })
+      .get(APIURL.DeleteMottoGetURL, { params: { id: itemID, catalog: this.$route.name } })
       .then((response) => {
         this.queryResult = response.data;
         if (response.data.substring(0, 5) !== '【未登录】') this.$emit('eSucceed', itemID);    // 如果成功，更新当前页面中的数据
