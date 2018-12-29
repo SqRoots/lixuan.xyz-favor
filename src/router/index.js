@@ -13,32 +13,32 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/favor/',
+      path: '/',
       name: 'Home',
       component: Home,
     },
     {
-      path: '/favor/web.html',
+      path: '/web.html',
       name: 'Web',
       component: Web,
     },
     {
-      path: '/favor/data.html',
+      path: '/data.html',
       name: 'Data',
       component: Data,
     },
     {
-      path: '/favor/software.html',
+      path: '/software.html',
       name: 'Software',
       component: Software,
     },
     {
-      path: '/favor/motto.html',
+      path: '/motto.html',
       name: 'Motto',
       component: Motto,
     },
     {
-      path: '/favor/about.html',
+      path: '/about.html',
       name: 'About',
       component: About,
     },

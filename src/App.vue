@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+
     <!-- ■■■■■■■■ 左边导航 ■■■■■■■■ -->
     <v-navigation-drawer
       :clipped="$vuetify.breakpoint.lgAndUp"
@@ -19,7 +20,7 @@
 
     <x-footer/>
 
-    <!-- ■■■■■■■■ 左上角折叠按钮 ■■■■■■■■ -->
+    <!-- ■■■■■■■■ 左上角 折叠按钮 ■■■■■■■■ -->
     <v-btn
       small
       fixed
@@ -30,7 +31,21 @@
     >
       <v-icon v-html="miniVariant ? 'chevron_left' : 'menu'"></v-icon>
     </v-btn>
-  </v-app>
+
+  <!-- ■■■■■■■■ 左下角 登录按钮 ■■■■■■■■ -->
+  <v-btn
+    small
+    fixed
+    bottom
+    left
+    fab
+    v-show="miniVariant"
+    :target="$cookies.get('login')==='login'?'_blank':'_self'"
+    :href="`https://lixuan.xyz/blog/wp-login.php?redirect_to=${currentURL()}`"
+  >
+    <v-icon v-html="$cookies.get('login')==='login'?'fas fa-sign-out-alt':'fas fa-sign-in-alt'"></v-icon>
+  </v-btn>
+</v-app>
 </template>
 
 <script>
@@ -58,6 +73,14 @@ export default {
       .then((response) => {
         this.$cookies.set('login', response.data);
       });
+    },
+    currentURL(miniVariant) {
+      const category = this.$route.query.category;
+      if (this.$cookies.get('login')==='login') {
+        return `${this.$route.path}?category=${category}&loggedout=true`;
+      } else {
+        return `${this.$route.path}?category=${category}`;
+      }
     },
   },
   mounted() {
@@ -105,6 +128,13 @@ export default {
   .v-footer{
     background-color: #dedcd4;
     text-align: center;
+  }
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
 </style>

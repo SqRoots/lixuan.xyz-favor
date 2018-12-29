@@ -20,12 +20,15 @@
           >
             <v-card>
               <v-card-title :class="`${info.color} ${i%2==0?'justify-end':'justify-start'}`">
-                <h3 class="headline white--text font-weight-light">{{info.title}}</h3>
+                <v-icon v-show='i%2!=0' dark>{{ info.icon }}</v-icon>
+                <h3 class="headline white--text font-weight-light">&nbsp;{{info.title}}&nbsp;</h3>
+                <v-icon v-show='i%2==0' dark>{{ info.icon }}</v-icon>
               </v-card-title>
               <v-container>
                 <v-layout align-center justify-center column fill-height>
                   <v-flex xs10>
-                    <div v-html="info.content"></div>
+                    <p v-for="p in info.content" v-html="p"></p>
+                    <!-- <div v-html="info.content"></div> -->
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -49,27 +52,47 @@ export default {
         {
           title: '主页',
           color: 'cyan',
-          content: 'Vue<br>Vuetify<br>Axios',
+          icon: 'fas fa-home',
+          content: [
+            '<b>域名</b>：lixuan.xyz | lixuan.me',
+            '<b>用途</b>：个人资源导航，收藏共享',
+            '<hr/>',
+            '使用Vue，Vuetify，Axios等开源工具创建',
+            '本主页源码已开源：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
+          ],
         },
         {
           title: '博客',
           color: 'green',
-          content: '<p>Wordpress</p>',
+          icon: 'fas fa-blog',
+          content: [
+            '待更新',
+            'Wordpress',
+          ],
         },
         {
           title: 'Mathematica问答社区',
           color: 'pink',
-          content: '<p>Wordpress</p><p>Question2Answer</p>',
+          icon: 'fas fa-atom',
+          content: [
+            '<p>Wordpress</p><p>Question2Answer</p>',
+          ],
         },
         {
           title: '数学之路',
           color: 'brown',
-          content: '<p>Discuz</p>',
+          icon: 'fas fa-superscript',
+          content: [
+            '<p>Discuz</p>',
+          ],
         },
         {
           title: '笔记',
           color: 'orange',
-          content: '<p>GitBoook</p>',
+          icon: 'fas fa-feather-alt',
+          content: [
+            '<p>GitBoook</p>',
+          ],
         },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
 
-  <v-container fluid>
+  <v-container fluid @click="PlotCurves()">
     <!-- 标题 -->
     <v-layout row wrap/>
       <v-flex xs12>
@@ -12,6 +12,8 @@
     <br>
     <v-divider></v-divider>
     <br>
+    <!-- 画布 曲线 -->
+    <canvas id="canvas" width="300" height="300"></canvas>
 
     <!-- 网站 列表 -->
     <v-layout wrap align-center justify-space-around row fill-height>
@@ -58,6 +60,7 @@ import shuxue6JPG from '@/assets/images/shuxue6.com.jpg';
 import mmaJPGLazy from '@/assets/images/mma.ooo.lazy.jpg';
 import lixJPGLazy from '@/assets/images/lixuan.xyz.lazy.jpg';
 import shuxue6JPGLazy from '@/assets/images/shuxue6.com.lazy.jpg';
+import { plotCurves as PlotCurves, resizeCanvas as ResizeCanvas } from '@/assets/js/PlotCurve';
 
 export default {
   name: 'PageHome',
@@ -89,6 +92,18 @@ export default {
           size: 3,
         },
       ],
+    };
+  },
+  methods: {
+    PlotCurves() {},
+  },
+  mounted() {
+    // const canvas = document.getElementById('canvas');
+    PlotCurves();
+    // window.onresize = ResizeCanvas();
+    this.PlotCurves = PlotCurves;
+    window.onresize = () => {
+      ResizeCanvas();
     };
   },
 };
