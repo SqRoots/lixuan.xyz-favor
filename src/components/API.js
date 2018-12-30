@@ -1,14 +1,14 @@
-const APIDirURL = 'https://lixuan.xyz/blog/x-c/';
+const APIDirURL = 'https://lixuan.xyz/blog/x-home-api/';
 const APIURL = {
   GetLoginQURL: `${APIDirURL}loginq.php`,
-  GetDataURL: `${APIDirURL}web-get.php`,
-  CreateItemPostURL: `${APIDirURL}web-create.php`,
-  CreateMottoPostURL: `${APIDirURL}web-create.php`,
-  EditCategoryPostURL: `${APIDirURL}web-edit-category.php`,
-  EditItemPostURL: `${APIDirURL}web-edit.php`,
-  EditMottoPostURL: `${APIDirURL}web-edit.php`,
-  DeleteItemURL: `${APIDirURL}web-delete.php`,
-  DeleteMottoGetURL: `${APIDirURL}web-delete.php`,
+  GetDataURL: `${APIDirURL}get.php`,
+  CreateItemPostURL: `${APIDirURL}create.php`,
+  CreateMottoPostURL: `${APIDirURL}create.php`,
+  EditCategoryPostURL: `${APIDirURL}edit-category.php`,
+  EditItemPostURL: `${APIDirURL}edit.php`,
+  EditMottoPostURL: `${APIDirURL}edit.php`,
+  DeleteItemURL: `${APIDirURL}delete.php`,
+  DeleteMottoGetURL: `${APIDirURL}delete.php`,
 };
 
 export default APIURL;

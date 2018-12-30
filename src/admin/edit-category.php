@@ -32,9 +32,9 @@ if ( is_user_logged_in() ) {
   ");
 
   $visible = $_POST['visible']? 1:0;
-  $stmt->bindValue(':old_category',      $_POST['old_category'],     SQLITE3_TEXT);
-  $stmt->bindValue(':new_category',      $_POST['new_category'],     SQLITE3_TEXT);
-  $stmt->bindValue(':visible',           $visible,                   SQLITE3_INTEGER);
+  $stmt->bindValue(':old_category',      stripslashes($_POST['old_category']),     SQLITE3_TEXT);
+  $stmt->bindValue(':new_category',      stripslashes($_POST['new_category']),     SQLITE3_TEXT);
+  $stmt->bindValue(':visible',           $visible,                                 SQLITE3_INTEGER);
   $result = $stmt->execute();
   if(!$result){
     echo '修改失败！\n';

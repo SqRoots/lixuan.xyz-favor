@@ -2,7 +2,7 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap justify-start>
       <!-- 项目卡片 -->
-      <v-flex v-for="item in bodyData" :key="item.id" xs12 sm6 md4 lg3 xg2>
+      <v-flex v-for="item in $_orderByID(bodyData)" :key="item.id" xs12 sm6 md4 lg3 xg2>
         <v-toolbar height="30px" light color="rgba(50,70,0,0.5)">
           <v-toolbar-title style="font-size:16px;">
             <v-tooltip top>
@@ -76,6 +76,10 @@ export default {
     'bodyData',
   ],
   methods: {
+    $_orderByID(data) {               // 排序函数
+      data.sort((a, b) => a.order - b.order);
+      return data;
+    },
     $_ShowEditDialog(data) {          // 显示编辑项目对话框
       this.dataEditDialog = data;
       this.valueEditItemDialog = true;
