@@ -74,13 +74,12 @@ export default {
         this.$cookies.set('login', response.data);
       });
     },
-    currentURL(miniVariant) {
+    currentURL() {
       const category = this.$route.query.category;
-      if (this.$cookies.get('login')==='login') {
+      if (this.$cookies.get('login') === 'login') {
         return `${this.$route.path}?category=${category}&loggedout=true`;
-      } else {
-        return `${this.$route.path}?category=${category}`;
       }
+      return `${this.$route.path}?category=${category}`;
     },
   },
   mounted() {

@@ -3,7 +3,7 @@
     <v-layout align-center justify-center column fill-height>
       <v-flex>
         <h1>关于</h1>
-        <h4>我的一些网络产出介绍</h4>
+        <h4>一些原创的网络产出</h4>
       </v-flex>
 
       <v-flex style="min-width:800px;">
@@ -16,14 +16,17 @@
             fill-dot
             :left='i%2==0'
             :right='i%2==1'
+            :icon='info.icon'
             small
           >
             <v-card>
+              <!-- 标题 -->
               <v-card-title :class="`${info.color} ${i%2==0?'justify-end':'justify-start'}`">
                 <v-icon v-show='i%2!=0' dark>{{ info.icon }}</v-icon>
-                <h3 class="headline white--text font-weight-light">&nbsp;{{info.title}}&nbsp;</h3>
+                <h3 class="headline white--text font-weight-light">&nbsp;<a :href="info.url" target="_blank">{{info.title}}</a>&nbsp;</h3>
                 <v-icon v-show='i%2==0' dark>{{ info.icon }}</v-icon>
               </v-card-title>
+              <!-- 内容 -->
               <v-container>
                 <v-layout align-center justify-center column fill-height>
                   <v-flex xs10>
@@ -51,47 +54,77 @@ export default {
       infomation: [
         {
           title: '主页',
+          url: 'https://lixuan.xyz',
           color: 'cyan',
           icon: 'fas fa-home',
           content: [
-            '<b>域名</b>：lixuan.xyz | lixuan.me',
-            '<b>用途</b>：个人资源导航，收藏共享',
+            '<b>域名</b>：<a href="https://lixuan.xyz" target="_blank">lixuan.xyz</a> | <a href="https://lixuan.me" target="_blank">lixuan.me</a>',
+            '<b>内容</b>：我的原创资源导航 + 收藏的一些网站',
+            '<b>日期</b>：主页于2018-12-29改成现版本',
             '<hr/>',
-            '使用Vue，Vuetify，Axios等开源工具创建',
+            '使用 Vue，Vuetify，Axios 等开源工具开发',
             '本主页源码已开源：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
           ],
         },
         {
           title: '博客',
+          url: 'https://lixuan.xyz/blog/',
           color: 'green',
           icon: 'fas fa-blog',
           content: [
-            '待更新',
-            'Wordpress',
+            '<b>域名</b>：<a href="https://lixuan.xyz/blog/" target="_blank">lixuan.xyz/blog/</a>',
+            '<b>内容</b>：趣题 + Mathematica + 笔记',
+            '<b>日期</b>：创办于2014-01-10',
+            '<hr/>',
+            '使用 Wordpress 创建',
           ],
         },
         {
           title: 'Mathematica问答社区',
+          url: 'https://mmaqa.com/',
           color: 'pink',
           icon: 'fas fa-atom',
           content: [
-            '<p>Wordpress</p><p>Question2Answer</p>',
-          ],
-        },
-        {
-          title: '数学之路',
-          color: 'brown',
-          icon: 'fas fa-superscript',
-          content: [
-            '<p>Discuz</p>',
+            '<b>域名</b>：<a href="https://mmaqa.com" target="_blank">mmaqa.com</a> | <a href="http://mma.ooo" target="_blank">mma.ooo</a>',
+            '<b>内容</b>：交流 Mathematica 问题 + 分享文章',
+            '<b>日期</b>：创办于2016-04-01',
+            '<hr/>',
+            '使用 Wordpress + Question2Answer 创建',
           ],
         },
         {
           title: '笔记',
+          url: 'https://lixuan.xyz/notes/mathematica/',
           color: 'orange',
           icon: 'fas fa-feather-alt',
           content: [
-            '<p>GitBoook</p>',
+            '<b>待续</b>',
+            '<hr/>',
+            '使用 GitBoook 创建',
+          ],
+        },
+        {
+          title: '摄影',
+          url: 'https://lixuan.xyz/photo',
+          color: 'blue',
+          icon: 'fas fa-camera',
+          content: [
+            '<b>待续</b>',
+            '<hr/>',
+            '使用 Lychee 创建',
+          ],
+        },
+        {
+          title: '数学之路 (停止维护)',
+          url: 'http://shuxue6.com',
+          color: 'brown',
+          icon: 'fas fa-superscript',
+          content: [
+            '<b>域名</b>：<a href="http://shuxue6.com" target="_blank">shuxue6.com</a>',
+            '<b>内容</b>：交流数学问题 + 分享数学资源',
+            '<b>日期</b>：创办于 2011 年，已不再维护',
+            '<hr/>',
+            '使用 Discuz 创建',
           ],
         },
       ],
@@ -110,5 +143,9 @@ export default {
   }
   .v-card__title {
     padding: 8px 16px;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
   }
 </style>

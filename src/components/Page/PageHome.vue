@@ -5,7 +5,7 @@
     <v-layout row wrap/>
       <v-flex xs12>
         <h1>李宣</h1>
-        <h3>欢迎来到我的小站</h3>
+        <h3>欢迎您访问我的主页</h3>
       </v-flex>
     </v-layout>
 
@@ -17,7 +17,8 @@
 
     <!-- 网站 列表 -->
     <v-layout wrap align-center justify-space-around row fill-height>
-      <v-flex v-for="web in myWeb" :key="web.name"  xs12 sm6 md4 lg3 xg2>
+      <!-- <v-flex v-for="web in myWeb" :key="web.name"  xs12 sm6 md4 lg3 xg2> -->
+      <v-flex v-for="web in myWeb" :key="web.name" lg2="true" lg3="false">
         <v-hover>
           <v-card
             :href="web.href"
