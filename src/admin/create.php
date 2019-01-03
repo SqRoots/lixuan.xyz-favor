@@ -57,7 +57,7 @@ if ( is_user_logged_in() ) {
     $stmt->bindValue(':user_id',        $user_ID,                                 SQLITE3_INTEGER);
     $stmt->bindValue(':type',           stripslashes($_POST["type"]),             SQLITE3_TEXT);
     $stmt->bindValue(':source',         stripslashes($_POST["source"]),           SQLITE3_TEXT);
-    $stmt->bindValue(':author',         stripslashes($_POST["author"],)           SQLITE3_TEXT);
+    $stmt->bindValue(':author',         stripslashes($_POST["author"]),           SQLITE3_TEXT);
     $stmt->bindValue(':tags',           stripslashes($_POST["tags"]),             SQLITE3_TEXT);
     $stmt->bindValue(':visible',        $visible,                                 SQLITE3_INTEGER);
     $stmt->bindValue(':content_html',   stripslashes($_POST["content_html"]),     SQLITE3_TEXT);
