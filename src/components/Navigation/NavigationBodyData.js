@@ -55,7 +55,10 @@ const NavigationBodyData = [
     routerName: 'About',
     model: false,
     icon: 'info',
-    children: [],
+    children: [
+      { model: 'inactive', icon: 'widgets', text: '拙作', query: { category: '拙作' } },
+      { model: 'inactive', icon: 'functions', text: '关于我', query: { category: '关于我' } },
+    ],
   },
 ];
 
