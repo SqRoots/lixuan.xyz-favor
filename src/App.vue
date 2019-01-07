@@ -75,9 +75,15 @@ export default {
       });
     },
     currentURL() {
-      const category = this.$route.query.category;
+      const category = this.$route.query.category || '';
       if (this.$cookies.get('login') === 'login') {
-        return `${this.$route.path}?category=${category}&loggedout=true`;
+        if (category === '') {
+          return `${this.$route.path}?category=${category}&loggedout=true`;
+        }
+        return `${this.$route.path}?loggedout=true`;
+      }
+      if (category === '') {
+        return `${this.$route.path}`;
       }
       return `${this.$route.path}?category=${category}`;
     },
@@ -86,11 +92,11 @@ export default {
     this.getLoginQ();         // 判断是否登录
 
     // 百度统计
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a704352b019633aaf7906532645c0d36";
-      var s = document.getElementsByTagName("script")[0];
+    let _hmt = _hmt || [];
+    (() => {
+      let hm = document.createElement('script');
+      hm.src = 'https://hm.baidu.com/hm.js?a704352b019633aaf7906532645c0d36';
+      const s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(hm, s);
     })();
   },
