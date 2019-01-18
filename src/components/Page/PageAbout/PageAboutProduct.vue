@@ -10,7 +10,7 @@
     <v-divider/>
 
     <v-layout flex-child align-center justify-center wrap>
-      <v-flex xs6 md6 lg4 xl3
+      <v-flex xs12 sm12 md6 lg4 xl3
       v-for="(info,i) in infomation"
       :key="i"
       :left='i%2==0'

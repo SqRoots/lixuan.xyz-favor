@@ -9,15 +9,15 @@
       <!-- 基本信息 -->
       <v-container grid-list-xl text-xs-center>
         <v-divider/>
-        <v-layout align-center justify-center row>
-          <v-flex md3 xl3>
+        <v-layout align-center justify-center row fill-height>
+          <v-flex xs12 sm12 md6 lg4 xl4>
             <v-card>
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">基本信息</h3>
               </v-card-title>
               <v-container>
                 <v-layout align-center justify-center column fill-height>
-                  <v-flex xs10>
+                  <v-flex>
                     <p v-for="p in basicInfo" v-html="p"></p>
                   </v-flex>
                 </v-layout>
@@ -26,14 +26,14 @@
           </v-flex>
 
           <!-- 扩展信息 -->
-          <v-flex md3 xl3>
+          <v-flex xs12 sm12 md6 lg4 xl4>
             <v-card>
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">扩展信息</h3>
               </v-card-title>
               <v-container>
                 <v-layout align-center justify-center column fill-height>
-                  <v-flex xs10>
+                  <v-flex>
                     <p v-for="p in extendedInfo" v-html="p"></p>
                   </v-flex>
                 </v-layout>
@@ -44,7 +44,7 @@
       </v-container>
 
       <!-- 文本履历 -->
-      <v-flex>
+      <v-flex xs12 md6 lg6 xl6>
         <v-card>
           <v-card-title class="blue justify-center">
             <h3 class="headline white--text font-weight-light">文本履历</h3>
