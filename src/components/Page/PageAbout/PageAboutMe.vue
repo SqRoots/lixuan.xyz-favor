@@ -10,7 +10,7 @@
       <v-container grid-list-xl text-xs-center>
         <v-divider/>
         <v-layout align-center justify-center row fill-height>
-          <v-flex xs12 sm12 md6 lg4 xl4>
+          <v-flex xs12 sm12 md6 lg3 xl3>
             <v-card>
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">基本信息</h3>
@@ -26,7 +26,7 @@
           </v-flex>
 
           <!-- 扩展信息 -->
-          <v-flex xs12 sm12 md6 lg4 xl4>
+          <v-flex xs12 sm12 md6 lg3 xl3>
             <v-card>
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">扩展信息</h3>
