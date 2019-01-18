@@ -60,7 +60,7 @@
       </v-flex>
 
       <!-- 时间轴履历 -->
-      <v-flex style="min-width:800px;">
+      <v-flex style="min-width:700px;">
         <v-divider/>
         <v-timeline>
           <v-timeline-item
@@ -75,7 +75,7 @@
           >
             <span
                slot="opposite"
-               :class="`headline font-weight-bold ${info.color}--text`"
+               :class="`title font-weight-bold ${info.color}--text`"
                v-text="info.date"
              ></span>
             <!-- 信息卡 -->
