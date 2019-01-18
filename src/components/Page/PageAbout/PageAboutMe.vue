@@ -6,38 +6,35 @@
         <h4>李宣</h4>
       </v-flex>
 
-      <!-- 个人资料卡 -->
+      <!-- 基本信息 -->
       <v-container grid-list-xl text-xs-center>
         <v-divider/>
         <v-layout align-center justify-center row>
           <v-flex md3 xl3>
             <v-card>
-              <!-- 标题 -->
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">基本信息</h3>
               </v-card-title>
-              <!-- 内容 -->
               <v-container>
                 <v-layout align-center justify-center column fill-height>
                   <v-flex xs10>
-                    <p v-for="p in personalInfo" v-html="p"></p>
+                    <p v-for="p in basicInfo" v-html="p"></p>
                   </v-flex>
                 </v-layout>
               </v-container>
             </v-card>
           </v-flex>
 
+          <!-- 扩展信息 -->
           <v-flex md3 xl3>
             <v-card>
-              <!-- 标题 -->
               <v-card-title class="blue justify-center">
                 <h3 class="headline white--text font-weight-light">扩展信息</h3>
               </v-card-title>
-              <!-- 内容 -->
               <v-container>
                 <v-layout align-center justify-center column fill-height>
                   <v-flex xs10>
-                    <p v-for="p in personalInfo" v-html="p"></p>
+                    <p v-for="p in extendedInfo" v-html="p"></p>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -46,23 +43,23 @@
         </v-layout>
       </v-container>
 
+      <!-- 文本履历 -->
       <v-flex>
         <v-card>
-          <!-- 标题 -->
           <v-card-title class="blue justify-center">
             <h3 class="headline white--text font-weight-light">文本履历</h3>
           </v-card-title>
-          <!-- 内容 -->
           <v-container>
             <v-layout align-center justify-center column fill-height>
               <v-flex xs10>
-                <p v-for="p in ll" v-html="p"></p>
+                <p v-for="p in resume" v-html="p"></p>
               </v-flex>
             </v-layout>
           </v-container>
         </v-card>
       </v-flex>
 
+      <!-- 时间轴履历 -->
       <v-flex style="min-width:800px;">
         <v-divider/>
         <v-timeline>
@@ -81,14 +78,13 @@
                :class="`headline font-weight-bold ${info.color}--text`"
                v-text="info.date"
              ></span>
+            <!-- 信息卡 -->
             <v-card>
-              <!-- 标题 -->
               <v-card-title :class="`${info.color} ${i%2==0?'justify-end':'justify-start'}`">
                 <v-icon v-show='i%2!=0' dark>{{ info.icon }}</v-icon>
                 <h3 class="headline white--text font-weight-light">&nbsp;<a :href="info.url" target="_blank">{{info.title}}</a>&nbsp;</h3>
                 <v-icon v-show='i%2==0' dark>{{ info.icon }}</v-icon>
               </v-card-title>
-              <!-- 内容 -->
               <v-container>
                 <v-layout align-center justify-center column fill-height>
                   <v-flex xs10>
@@ -116,21 +112,26 @@ export default {
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const nowMyAge = Math.floor((((100 * year) + month) - 198703) / 100);
-      return `<b>生日</b>： 1987-03-14 (${nowMyAge}岁)`;
+      return `${nowMyAge}岁`;
     },
   },
   data() {
     return {
-      personalInfo: [
-        '<b>姓名</b>： 李宣',
-        '<b>性别</b>： 男',
-        `${this.$_getAge()}`,
+      basicInfo: [
+        `<b>李宣 / 男 / ${this.$_getAge()}</b>`,
+        '<b>生日</b>： 1987-03-14',
         '<b>家乡</b>： 河北 昌黎',
         '<b>视力</b>： 近视（-250°），绿色弱',
         '<b>网名</b>： 凡星有梦 / 野鹤 / Sqroots',
+      ],
+      extendedInfo: [
+        '<b>专业</b>： 数学、统计',
+        '<b>职业</b>： 数据分析师',
+        '<b>擅长</b>： Mathematica',
+        '<b>掌握</b>： Office / Python / SQL / 算法 / 前端',
         '<b>邮箱</b>： lixuan.xyz@gmail.com',
       ],
-      ll: [
+      resume: [
         '1987年',
         '我出生于一个并不偏远的村庄',
         '有值得怀念的童年',
@@ -149,47 +150,51 @@ export default {
         {
           date: '2016-04 ~ 今',
           title: '北京中彩在线',
-          url: 'https://lixuan.xyz',
+          url: 'http://www.clo.com.cn/',
           color: 'cyan',
           icon: 'fas fa-building',
           content: [
             '<b>职位</b>： 数据分析师',
             '<b>部门</b>： 数据分析部',
-            '<hr/>',
-            '使用 Vue，Vuetify，Axios 等开源工具开发',
-            '本主页源码已开源：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
           ],
         },
         {
           date: '2014-12 ~ 2016-04',
           title: '北京360',
-          url: 'https://lixuan.xyz/blog/',
+          url: 'https://www.360.cn/',
           color: 'green',
           icon: 'fas fa-building',
           content: [
             '<b>职位</b>： 数据分析师',
             '<b>部门</b>： 在线营销部',
-            '<hr/>',
-            '使用 Wordpress 创建',
           ],
         },
         {
           date: '2014-06 ~ 2014-12',
           title: '北京新东方',
-          url: 'https://mmaqa.com/',
+          url: 'http://www.xdf.cn/',
           color: 'pink',
           icon: 'fas fa-building',
           content: [
             '<b>职位</b>： 数据分析师',
             '<b>部门</b>： 教务管理部',
-            '<hr/>',
-            '使用 Wordpress + Question2Answer 创建',
+          ],
+        },
+        {
+          date: '2014-02 ~ 2014-04',
+          title: '人大经济论坛',
+          url: 'https://bbs.pinggu.org/',
+          color: 'cyan',
+          icon: 'fas fa-building',
+          content: [
+            '<b>职位</b>： 数据分析师',
+            '<b>部门</b>： 数据分析部',
           ],
         },
         {
           date: '2011-09 ~ 2014-01',
           title: '燕山大学',
-          url: 'https://lixuan.xyz/notes/mathematica/',
+          url: 'https://www.ysu.edu.cn/',
           color: 'orange',
           icon: 'fas fa-graduation-cap',
           content: [
@@ -197,14 +202,12 @@ export default {
             '<b>院系</b>： 理学院',
             '<b>学位</b>： 理学硕士',
             '<b>学历</b>： 全日制研究生',
-            '<hr/>',
-            '使用 GitBoook 创建',
           ],
         },
         {
           date: '2006-09 ~ 2011-06',
           title: '保定学院',
-          url: 'https://lixuan.xyz/photo',
+          url: 'http://www.bdu.edu.cn/',
           color: 'blue',
           icon: 'fas fa-graduation-cap',
           content: [
@@ -212,44 +215,36 @@ export default {
             '<b>院系</b>： 数学与计算机系',
             '<b>学位</b>： 理学学士',
             '<b>学历</b>： 全日制专接本',
-            '<hr/>',
-            '使用 Lychee 创建',
           ],
         },
         {
           date: '2003-09 ~ 2006-06',
           title: '昌黎汇文二中',
-          url: 'http://shuxue6.com',
+          url: 'http://www.hbclhwez.com/',
           color: 'brown',
           icon: 'fas fa-graduation-cap',
           content: [
             '<b>学历</b>： 全日制普通高中',
-            '<hr/>',
-            '使用 Discuz 创建',
           ],
         },
         {
           date: '2000-09 ~ 2003-06',
           title: '泥井镇中学',
-          url: 'http://shuxue6.com',
-          color: 'brown',
+          url: '',
+          color: 'indigo',
           icon: 'fas fa-graduation-cap',
           content: [
             '<b>学历</b>： 全日制初级中学',
-            '<hr/>',
-            '使用 Discuz 创建',
           ],
         },
         {
           date: '1994-09 ~ 2000-06',
           title: '泥井镇中心小学',
-          url: 'http://shuxue6.com',
-          color: 'brown',
+          url: '',
+          color: 'teal',
           icon: 'fas fa-graduation-cap',
           content: [
             '<b>学历</b>： 全日制小学',
-            '<hr/>',
-            '使用 Discuz 创建',
           ],
         },
       ],
