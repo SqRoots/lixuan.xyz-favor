@@ -8,6 +8,7 @@
 
       <!-- 个人资料卡 -->
       <v-container grid-list-xl text-xs-center>
+        <v-divider/>
         <v-layout align-center justify-center row>
           <v-flex md3 xl3>
             <v-card>
