@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import logoPath from '@/assets/images/logo.png';
+// import logoPath from '@/assets/images/logo.png';
 
 export default {
   name: 'NavigationHead',
   data() {
     return {
-      logo: logoPath,
+      logo: 'https://lixuan.xyz/x-images/logo.png',
     };
   },
 };

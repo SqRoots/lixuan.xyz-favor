@@ -2,8 +2,8 @@
   <v-container grid-list-xl text-xs-center>
     <v-layout align-center justify-center column fill-height>
       <v-flex>
-        <h1>原创</h1>
-        <h4>一些原创的网络产出</h4>
+        <h1>拙作</h1>
+        <h4>一些原创产出</h4>
       </v-flex>
     </v-layout>
 
@@ -53,16 +53,16 @@ export default {
   components: {
     SheetFooter: {
       functional: true,
-      render (h, { children }) {
+      render(h, { children }) {
         return h('v-sheet', {
           staticClass: 'mt-auto align-center justify-center d-flex',
           props: {
             color: 'rgba(0, 0, 0, .36)',
             dark: true,
             height: 50,
-          }
-        }, children)
-      }
+          },
+        }, children);
+      },
     },
   },
   data() {
@@ -77,7 +77,7 @@ export default {
             '<a href="https://lixuan.xyz" target="_blank">lixuan.xyz</a> | <a href="https://lixuan.me" target="_blank">lixuan.me</a>',
             '<b>内容</b>：原创资源导航 + 收藏的 网站',
             '<b>日期</b>：主页于 2018-12-29 改版',
-            '<b>工具</b>：Vue，Vuetify，本主页源码已开源：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
+            '<b>工具</b>：Vue，Vuetify，源码存放于：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
           ],
         },
         {
@@ -99,7 +99,7 @@ export default {
           icon: 'fas fa-atom',
           content: [
             '<a href="https://mmaqa.com" target="_blank">mmaqa.com</a> | <a href="http://mma.ooo" target="_blank">mma.ooo</a>',
-            '<b>内容</b>：交流 Mathematica 问题 + 分享文章',
+            '<b>内容</b>：Mathematica 交流社区',
             '<b>日期</b>：创办于2016-04-01',
             '<b>工具</b>：Wordpress + Question2Answer',
           ],
@@ -111,8 +111,8 @@ export default {
           icon: 'fas fa-feather-alt',
           content: [
             '<a href="https://lixuan.xyz/notes/mathematica/" target="_blank">lixuan.xyz/notes/mathematica</a>',
-            '<b>工具</b>：GitBoook',
-            '<b>待续</b> ...',
+            '<b>内容</b>: Mathematica 笔记（未完）',
+            '<b>工具</b>: GitBoook',
           ],
         },
         {
@@ -122,8 +122,8 @@ export default {
           icon: 'fas fa-camera',
           content: [
             '<a href="https://lixuan.xyz/photo/" target="_blank">lixuan.xyz/photo</a>',
-            '<b>工具</b>：Lychee',
-            '<b>待续</b> ...',
+            '<b>内容</b>: 随拍，暂无特定主题',
+            '<b>工具</b>: Lychee | Canon 6D',
           ],
         },
         {
@@ -136,6 +136,17 @@ export default {
             '<b>内容</b>：交流数学问题 + 分享数学资源',
             '<b>日期</b>：创办于 2011 年，已不再维护',
             '<b>工具</b>：Discuz',
+          ],
+        },
+        {
+          title: 'MathType完全教程',
+          url: 'https://pan.baidu.com/s/1hqvjTNu',
+          color: 'light-green lighten-3',
+          icon: 'fas fa-superscript',
+          content: [
+            '<a href="https://pan.baidu.com/s/1hqvjTNu" target="_blank">下载《MathType完全教程》</a>',
+            '<b>内容</b>：MathType 入门教程',
+            '<b>日期</b>：完稿于 2013-10-30',
           ],
         },
       ],

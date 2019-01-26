@@ -57,7 +57,7 @@ const NavigationBodyData = [
     icon: 'info',
     children: [
       { model: 'inactive', icon: 'widgets', text: '拙作', query: { category: '拙作' } },
-      { model: 'inactive', icon: 'functions', text: '关于我', query: { category: '关于我' } },
+      { model: 'inactive', icon: 'functions', text: '个人简介', query: { category: '个人简介' } },
     ],
   },
 ];

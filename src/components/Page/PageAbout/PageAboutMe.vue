@@ -2,8 +2,8 @@
   <v-container grid-list-xl text-xs-center>
     <v-layout align-center justify-center column fill-height>
       <v-flex>
-        <h1>关于我</h1>
-        <h4>李宣</h4>
+        <h1>个人简介</h1>
+        <h4>个人信息+履历</h4>
       </v-flex>
 
       <!-- 基本信息 -->
@@ -12,7 +12,7 @@
         <v-layout align-center justify-center row fill-height>
           <v-flex xs12 sm12 md6 lg3 xl3>
             <v-card>
-              <v-card-title class="blue justify-center">
+              <v-card-title class="green justify-center">
                 <h3 class="headline white--text font-weight-light">基本信息</h3>
               </v-card-title>
               <v-container>
@@ -46,8 +46,8 @@
       <!-- 文本履历 -->
       <v-flex xs12 md6 lg6 xl6>
         <v-card>
-          <v-card-title class="blue justify-center">
-            <h3 class="headline white--text font-weight-light">文本履历</h3>
+          <v-card-title class="grey justify-center">
+            <h3 class="headline white--text font-weight-light">履历</h3>
           </v-card-title>
           <v-container>
             <v-layout align-center justify-center column fill-height>

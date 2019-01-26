@@ -3,7 +3,7 @@
     <v-layout align-center justify-center column fill-height>
       <v-flex>
         <h1>关于</h1>
-        <h4>本主页简介</h4>
+        <h4>主页简介</h4>
       </v-flex>
     </v-layout>
 
@@ -29,9 +29,9 @@ export default {
         '<b>域名</b>：<a href="https://lixuan.xyz" target="_blank">lixuan.xyz</a> | <a href="https://lixuan.me" target="_blank">lixuan.me</a>',
         '<b>日期</b>：主页于 2018-12-29 改版',
         '<b>内容</b>：原创资源导航 + 收藏的 网站',
-        '<b>工具</b>：Vue，Vuetify，本主页源码已开源：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
-      ]
-    }
+        '<b>工具</b>：Vue，Vuetify，源码存放于：<a href="https://github.com/SqRoots/lixuan.xyz-favor">Github</a>',
+      ],
+    };
   },
 };
 </script>

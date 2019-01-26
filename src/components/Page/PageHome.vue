@@ -16,9 +16,10 @@
     <canvas id="canvas" width="300" height="300"></canvas>
 
     <!-- 网站 列表 -->
-    <v-layout wrap align-center justify-space-around row fill-height>
+    <!-- <v-layout wrap align-center justify-space-around row fill-height> -->
+    <v-layout flex-child align-center justify-center wrap>
       <!-- <v-flex v-for="web in myWeb" :key="web.name"  xs12 sm6 md4 lg3 xg2> -->
-      <v-flex v-for="web in myWeb" :key="web.name" lg2="true" lg3="false">
+      <v-flex v-for="web in myWeb" :key="web.name" xs12 sm12 md6 lg4 xl3>
         <v-hover>
           <v-card
             :href="web.href"
@@ -55,12 +56,12 @@
 </template>
 
 <script>
-import mmaJPG from '@/assets/images/mma.ooo.jpg';
-import lixJPG from '@/assets/images/lixuan.xyz.jpg';
-import shuxue6JPG from '@/assets/images/shuxue6.com.jpg';
-import mmaJPGLazy from '@/assets/images/mma.ooo.lazy.jpg';
-import lixJPGLazy from '@/assets/images/lixuan.xyz.lazy.jpg';
-import shuxue6JPGLazy from '@/assets/images/shuxue6.com.lazy.jpg';
+// import mmaJPG from '@/assets/images/mma.ooo.jpg';
+// import lixJPG from '@/assets/images/lixuan.xyz.jpg';
+// import shuxue6JPG from '@/assets/images/shuxue6.com.jpg';
+// import mmaJPGLazy from '@/assets/images/mma.ooo.lazy.jpg';
+// import lixJPGLazy from '@/assets/images/lixuan.xyz.lazy.jpg';
+// import shuxue6JPGLazy from '@/assets/images/shuxue6.com.lazy.jpg';
 import { plotCurves as PlotCurves, resizeCanvas as ResizeCanvas } from '@/assets/js/PlotCurve';
 
 export default {
@@ -69,26 +70,34 @@ export default {
     return {
       myWeb: [
         {
-          name: 'Mathematica问答社区',
-          href: 'https://mmaqa.com',
-          imgsrc: mmaJPG,
-          imgsrcLazy: mmaJPGLazy,
-          description_html: '创办于2016-04-01',
-          size: 3,
-        },
-        {
           name: '我的博客',
           href: 'https://lixuan.xyz/blog/',
-          imgsrc: lixJPG,
-          imgsrcLazy: lixJPGLazy,
+          imgsrc: 'https://lixuan.xyz/x-images/lixuan.xyz.jpg',
+          imgsrcLazy: 'https://lixuan.xyz/x-images/lixuan.xyz.lazy.jpg',
           description_html: '创办于2014-01-10',
           size: 4,
         },
         {
+          name: '摄影',
+          href: 'http://lixuan.xyz/photo/',
+          imgsrc: 'https://lixuan.xyz/x-images/photo.jpg',
+          imgsrcLazy: 'https://lixuan.xyz/x-images/photo.lazy.jpg',
+          description_html: '创办于2018年',
+          size: 3,
+        },
+        {
+          name: 'Mathematica问答社区',
+          href: 'https://mmaqa.com',
+          imgsrc: 'https://lixuan.xyz/x-images/mma.ooo.jpg',
+          imgsrcLazy: 'https://lixuan.xyz/x-images/mma.ooo.lazy.jpg',
+          description_html: '创办于2016-04-01',
+          size: 3,
+        },
+        {
           name: '数学之路',
           href: 'http://shuxue6.com/',
-          imgsrc: shuxue6JPG,
-          imgsrcLazy: shuxue6JPGLazy,
+          imgsrc: 'https://lixuan.xyz/x-images/shuxue6.com.jpg',
+          imgsrcLazy: 'https://lixuan.xyz/x-images/shuxue6.com.lazy.jpg',
           description_html: '创办于2011年，已经不再维护',
           size: 3,
         },

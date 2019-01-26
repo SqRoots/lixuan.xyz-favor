@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <x-about v-if='$route.query.category!=="关于我"&&$route.query.category!=="拙作"'/>
-    <x-about-me v-if='$route.query.category==="关于我"'/>
+    <x-about v-if='$route.query.category!=="个人简介"&&$route.query.category!=="拙作"'/>
+    <x-about-me v-if='$route.query.category==="个人简介"'/>
     <x-about-product v-if='$route.query.category==="拙作"'/>
   </v-container>
 </template>
