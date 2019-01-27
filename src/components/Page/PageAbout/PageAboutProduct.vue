@@ -142,7 +142,7 @@ export default {
           title: 'MathType完全教程',
           url: 'https://pan.baidu.com/s/1hqvjTNu',
           color: 'light-green lighten-3',
-          icon: 'fas fa-superscript',
+          icon: 'fas fa-book-open',
           content: [
             '<a href="https://pan.baidu.com/s/1hqvjTNu" target="_blank">下载《MathType完全教程》</a>',
             '<b>内容</b>：MathType 入门教程',
