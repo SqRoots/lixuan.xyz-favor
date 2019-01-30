@@ -1,3 +1,6 @@
+**※ This project is no longer being repaired. View the new project to go：[lixuan.xyz-home](https://github.com/SqRoots/lixuan.xyz-home)**
+**※ 本项目已经废弃，请查看新项目：[lixuan.xyz-home](https://github.com/SqRoots/lixuan.xyz-home)**
+
 # favor
 
 > my favorite!
